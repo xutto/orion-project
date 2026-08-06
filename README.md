@@ -20,6 +20,8 @@ Orion is a **decentralized peer-to-peer file sharing application** built on top 
 └──────────────────────────────────────────────────────┘
 ```
 
+![Orion Application](snapshot01.png)
+
 ### Stack
 
 | Layer           | Technology                                   |
