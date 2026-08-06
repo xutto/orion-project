@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.5</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.mac.orion</groupId>
+  <artifactId>orion-application</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>orion-application</name>
+  <description>Orion application core</description>
+
+  <properties>
+    <java.version>21</java.version>
+    <java-fx.version>23-ea+3</java-fx.version>
+    <material-fx-version>11.17.0</material-fx-version>
+    <lucene.version>10.2.2</lucene.version>
+    <netty.version>4.1.115.Final</netty.version>
+<!--    <netty.version>4.1.109.Final</netty.version>-->
+    <protobuf.version>3.25.5</protobuf.version>
+    <libp2p.version>1.2.2-custom-xutto</libp2p.version>
+    <lombok.version>1.18.46</lombok.version>
+    <byte-buddy.version>1.17.8</byte-buddy.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>${byte-buddy.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy-agent</artifactId>
+        <version>${byte-buddy.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+
+    <dependency>
+      <groupId>io.github.seujorgenochurras</groupId>
+      <artifactId>image-to-ascii</artifactId>
+      <version>0.0.5</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <artifactId>nabu</artifactId>-->
+<!--      <groupId>com.github.Peergos</groupId>-->
+<!--      <version>v0.8.0</version>-->
+<!--    </dependency>-->
+
+
+    <!--    LUCENE-->
+
+    <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>${lucene.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analysis-common -->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analysis-common</artifactId>
+      <version>${lucene.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queryparser</artifactId>
+      <version>${lucene.version}</version>
+    </dependency>
+
+    <!--    LUCENE-->
+
+    <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>33.3.1-jre</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-all</artifactId>
+      <version>${netty.version}</version>
+    </dependency>
+
+
+<!--    <dependency>-->
+<!--      <groupId>com.southerstorm</groupId>-->
+<!--      <artifactId>noise-java</artifactId>-->
+<!--      <version>1.0</version>-->
+<!--    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/tech.pegasys/noise-java -->
+    <dependency>
+      <groupId>tech.pegasys</groupId>
+      <artifactId>noise-java</artifactId>
+      <version>22.1.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk18on -->
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk18on</artifactId>
+      <version>1.78.1</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>${protobuf.version}</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>2.0.21-RC</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-maven-plugin -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-maven-plugin</artifactId>
+      <version>2.0.21-RC</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-reflect -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+      <version>2.0.21-RC</version>
+      <scope>runtime</scope>
+    </dependency>
+
+
+    <!--		LIBP2P INSTALLED MANUALLY -->
+    <dependency>
+      <groupId>io.libp2p</groupId>
+      <artifactId>jvm-libp2p</artifactId>
+      <version>${libp2p.version}</version>
+    </dependency>
+    <!--		LIBP2P INSTALLED MANUALLY -->
+
+    <!-- MapStruct AND LOMBOK -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.mapstruct</groupId>-->
+<!--      <artifactId>mapstruct-processor</artifactId>-->
+<!--      <version>1.6.2</version>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.projectlombok</groupId>-->
+<!--      <artifactId>lombok-mapstruct-binding</artifactId>-->
+<!--      <version>0.2.0</version>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- MapStruct AND LOMBOK -->
+
+
+    <!--JAVA FX-->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>${java-fx.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>${java-fx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.palexdev</groupId>
+      <artifactId>materialfx</artifactId>
+      <version>${material-fx-version}</version>
+    </dependency>
+    <!--JAVA FX-->
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- data base -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-community-dialects</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.46.1.0</version>
+    </dependency>
+
+    <!--		TESTING-->
+    <!-- https://mvnrepository.com/artifact/uk.co.jemos.podam/podam -->
+    <dependency>
+      <groupId>uk.co.jemos.podam</groupId>
+      <artifactId>podam</artifactId>
+      <version>8.0.2.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.23.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>5.2.0</version>
+      <scope>test</scope>
+    </dependency>
+
+
+  </dependencies>
+
+  <build>
+
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.0</version>
+      </extension>
+    </extensions>
+
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <id>default-tests</id>
+            <phase>test</phase>
+          </execution>
+        </executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.5.3</version>
+        <configuration>
+          <excludedGroups>manual</excludedGroups>
+        </configuration>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.xolstice.maven.plugins</groupId>
+        <artifactId>protobuf-maven-plugin</artifactId>
+        <version>0.6.1</version>
+
+        <configuration>
+          <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
+        </configuration>
+
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <!--                            <goal>compile-custom</goal>-->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>0.2.0</version>
+            </path>
+
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>1.6.2</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<HBox stylesheets="@style/transfers-result.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mac.orion.infrastructure.ui.controller.TransfersController">
+    <children>
+        <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #141518;" styleClass="app-application-scroll-pane" thumbColor="#2e323c" thumbHoverColor="#1d1f25" trackColor="#141518" HBox.hgrow="ALWAYS">
+            <content>
+                <HBox>
+                    <children>
+                        <VBox id="transfers-app-application" HBox.hgrow="ALWAYS">
+                            <children>
+                                <TableView id="transfers-table" fx:id="transfersTable" minWidth="800.0" stylesheets="@style/tables.css" VBox.vgrow="ALWAYS">
+
+                                <columns>
+                                        <TableColumn fx:id="transfersNameColumn" minWidth="150.0" prefWidth="-1.0" text="NAME" />
+                                        <TableColumn fx:id="transfersCompletedColumn" minWidth="150.0" prefWidth="-1.0" text="COMPLETED" />
+                                        <TableColumn fx:id="transfersSpeedColumn" minWidth="150.0" prefWidth="-1.0" text="SPEED" />
+                                        <TableColumn fx:id="transfersNodesColumn" minWidth="150.0" prefWidth="-1.0" text="NODES" />
+                                        <TableColumn fx:id="transfersProgressColumn" minWidth="150.0" prefWidth="-1.0" text="PROGRESS" />
+                                    </columns>
+
+<!--                                    <ProgressBar progress="0.65" minWidth="150.0" styleClass="download-progress"/>-->
+
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </content>
+        </MFXScrollPane>
+    </children>
+</HBox>

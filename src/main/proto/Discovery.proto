@@ -1,0 +1,27 @@
+syntax = "proto3";
+import "Peer.proto";
+
+package com.mac.orion.infrastructure.p2p.model;
+
+option java_outer_classname = "Discovery";
+
+message PeerInfoDiscovery{
+  oneof payload {
+    DiscoveryRequest  request = 1;
+    DiscoveryResponse response = 2;
+  }
+}
+
+message DiscoveryRequest{
+  bytes id = 1;
+  repeated PeerAddress address = 2;
+}
+
+message DiscoveryResponse{
+  repeated PeerData closestPeers = 2;
+}
+
+
+//message PeerInfoResponse{
+//  repeated bytes closestPeers = 1;
+//}

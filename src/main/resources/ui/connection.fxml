@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<HBox xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mac.orion.infrastructure.ui.controller.ConnectionController">
+   <children>
+      <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #141518;" styleClass="files-app-application-scroll-pane" thumbColor="#2e323c" thumbHoverColor="#1d1f25" trackColor="#141518" HBox.hgrow="ALWAYS">
+         <content>
+            <HBox>
+               <children>
+                 <VBox HBox.hgrow="ALWAYS" id="hostNodes-app-application">
+                     <children>
+                       <TableView VBox.vgrow="ALWAYS" id="peers-table" minWidth="800.0"
+                         stylesheets="@style/tables.css" fx:id="connTable">
+                           <columns>
+                              <TableColumn fx:id="connIdTableColumn" minWidth="200.0" prefWidth="-1.0" text="ID" />
+                              <TableColumn fx:id="connHashColumn" minWidth="200.0" prefWidth="-1.0" text="HASH" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </MFXScrollPane>
+   </children>
+</HBox>

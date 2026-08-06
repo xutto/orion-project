@@ -1,0 +1,293 @@
+/* ONLY BY SCENEBUILDER CAN DELETE IT IF NOT EDIT ON SCENEBUILDER */
+
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto Flex';
+  src: url('../fonts/roboto/RobotoFlex-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto Black';
+  src: url('../fonts/roboto/Roboto-Black.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto Bold';
+  src: url('../fonts/roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoMono Nerd Font';
+  src: url('../fonts/roboto_mono/RobotoMonoNerdFont-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoMono Nerd Font Md';
+  src: url('../fonts/roboto_mono/RobotoMonoNerdFont-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoMono Nerd Font Bd';
+  src: url('../fonts/roboto_mono/RobotoMonoNerdFont-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'HeavyData Nerd Font';
+  src: url('../fonts/heavyData/HeavyDataNerdFont-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'HeavyData Nerd Font Propo';
+  src: url('../fonts/heavyData/HeavyDataNerdFontPropo-Regular.ttf');
+}
+
+.app-application-scroll-pane {
+  -fx-background-color: #141518; /* ESTA PROPIEDAD ESTA DEFINIDA EN EL FXML PORQUE NO HACE EFECTO */
+}
+
+.scroll-pane-standard{ /* LOS SCROLL-PANE DEBEN TENER LOS BACKGROUND Y ALGUNOS ESTILOS DEFINIDOS EN EL FXML SI NO NO FUNCIONAN */
+  -fx-padding: 4px;
+}
+/* ONLY BY SCENEBUILDER CAN DELETE IT IF NOT EDIT ON SCENEBUILDER */
+
+.tittle-trademark-label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 16px;
+  -fx-text-fill: #9597a2;
+}
+
+/*  SETTINGS */
+
+/*.settings-content {*/
+/*  -fx-background-color: #23262e;*/
+/*}*/
+
+/*.settings-menu {*/
+/*  -fx-background-color: #1d1f25;*/
+/*  -fx-border-color: #000000;*/
+/*  -fx-border-width: 0 1px 0 0;*/
+/*}*/
+
+/*.settings-close-bar {*/
+/*  -fx-background-color: #23262e;*/
+/*  -fx-border-color: #1d1f25;*/
+/*  -fx-border-width: 0 1px 0 1px;*/
+/*}*/
+
+/*.settings-tittle-label {*/
+/*  -fx-font-family: "Roboto";*/
+/*  -fx-font-size: 20px;*/
+/*  -fx-text-fill: #9597a2;*/
+/*  !*-fx-font-weight: bold;*!*/
+/*}*/
+
+/*.settings-tittle {*/
+/*  -fx-border-style: solid;*/
+/*  -fx-border-color: #2b2f3a;*/
+/*  -fx-border-width: 0 0 1px 0;*/
+/*  -fx-padding: 10px 0 10px 0;*/
+/*}*/
+
+/*.settings-tittle-container {*/
+/*  -fx-padding: 10px;*/
+/*}*/
+
+/*.settings-container {*/
+/*  -fx-padding: 10px;*/
+/*}*/
+
+/*.settings-container-pane {*/
+/*  -fx-background-color: #23262e;*/
+/*  -fx-background-radius: 8px;*/
+/*  -fx-padding: 0 6px 0 6px;*/
+/*}*/
+
+/*.settings-option-label {*/
+/*  -fx-font-family: "Roboto";*/
+/*  -fx-font-size: 14px;*/
+/*  -fx-text-fill: #cfcfcf;*/
+/*}*/
+
+/*.settings-content-tittle {*/
+/*  -fx-padding: 0 10px 6px 10px;*/
+/*  -fx-border-width: 0 0 1px 0;*/
+/*  -fx-border-color: #1d1f25;*/
+/*}*/
+
+/*.settings-content-tittle > .label {*/
+/*  -fx-font-family: "Roboto Bold";*/
+/*  -fx-font-size: 16px;*/
+/*  -fx-text-fill: #9597a2;*/
+/*}*/
+
+/*.settings-content-body {*/
+/*  -fx-spacing: 16px;*/
+/*}*/
+
+/*.settings-content-body-tittle {*/
+/*  -fx-padding: 0 10px 0 10px;*/
+/*}*/
+
+/*.settings-content-body-tittle > .label {*/
+/*  -fx-font-family: "Roboto";*/
+/*  -fx-font-size: 14px;*/
+/*  -fx-text-fill: #cfcfcf;*/
+/*}*/
+
+/*.settings-content-body-result {*/
+
+/*}*/
+
+/*.settings-content-body-result-folder > .label {*/
+/*  -fx-font-family: "Roboto";*/
+/*  -fx-font-size: 12px;*/
+/*  -fx-text-fill: #9597a2;*/
+/*}*/
+
+/*.settings-content-body-result-folder {*/
+/*  -fx-padding: 0 10px 0 10px;*/
+/*}*/
+
+/*.settings-content-body-result-button {*/
+/*  -fx-padding: 0 10px 0 10px;*/
+/*}*/
+
+/*.settings-content-body-result-button .button {*/
+/*  -fx-font-family: "Roboto";*/
+/*  -fx-font-size: 12px;*/
+/*  -fx-pref-width: 70px;*/
+
+/*}*/
+
+/*.folder-icon > .icon {*/
+/*  -fx-fill: #9597a2;*/
+/*  -fx-scale-y: 0.04;*/
+/*  -fx-scale-x: 0.04;*/
+/*}*/
+
+/*.folder-icon-orange > .icon{*/
+/*  -fx-fill: #f59e0b;*/
+/*  -fx-scale-y: 0.04;*/
+/*  -fx-scale-x: 0.04;*/
+/*}*/
+
+/*  SETTINGS */
+
+
+.tittle-trademark {
+  -fx-border-style: solid;
+  -fx-border-color: #1d1f25;
+  -fx-border-width: 0 0 1px 0;
+}
+
+.main-full {
+    -fx-background-color: #141518;
+}
+
+.main-menu {
+  -fx-background-color: #23262e;
+}
+
+.main-content {
+  -fx-background-color: #141518;
+}
+
+.menu-option-icon {
+
+}
+
+.menu-option-content {
+  -fx-padding: 0 10px;
+}
+
+.menu-option-content:hover {
+  -fx-background-color: #2e323c;
+  -fx-cursor: hand;
+}
+
+.menu-option-content-selected {
+  -fx-background-color: #363b47;
+}
+
+.menu-option-label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 16px;
+  -fx-text-fill: #9597a2;
+}
+
+.main-bar {
+  -fx-background-color: #141518;
+  -fx-border-width: 0 0 1px 0;
+  -fx-border-color: #1d1f25;
+}
+
+.main-bar-option {
+  -fx-background-color: #23262e;
+  -fx-background-radius: 6px;
+}
+
+.main-bar-option:hover {
+  -fx-background-color: #2e323c;
+  -fx-cursor: hand;
+
+}
+
+.main-bar-option-text {
+  -fx-font-family: "Roboto Flex";
+  -fx-font-size: 12px;
+  -fx-text-fill: #9597a2;
+}
+
+.settings-option {
+
+}
+
+.app-tittle-text-container {
+  -fx-background-color: #23262e;
+  -fx-background-radius: 8;
+}
+
+.app-tittle-text {
+  -fx-font-family: "Roboto Bold";
+  -fx-font-size: 32px;
+  -fx-text-fill: #9597a2;
+  /*-fx-font-weight: bold;*/
+}
+
+.button-standard {
+  -fx-background-color: #1d7b54;
+  -fx-background-radius: 6px;
+  -fx-text-fill: #c9ccda;
+  -fx-font-family: "Roboto";
+  -fx-font-size: 16px;
+  -fx-cursor: hand;
+}
+
+
+.button-standard:hover {
+  -fx-font-family: "Roboto";
+  -fx-background-color: #1a6844;
+  -fx-text-fill: #daddec;
+}
+
+.button-standard:pressed {
+  -fx-background-color: #175534;
+  -fx-text-fill: #ffffff;
+}
+
+.button-standard .text {
+  -fx-font-family: "Roboto";
+}
+
+.default-icon > .icon {
+  -fx-fill: #9597a2;
+  -fx-scale-y: 0.04;
+  -fx-scale-x: 0.04;
+}
+
+

@@ -1,0 +1,27 @@
+logging:
+  level:
+    root: info
+    io.libp2p.core: debug
+    com.mac.orion: debug
+
+    io:
+      libp2p:
+        protocol:
+          Identify: debug
+
+orion:
+#  files:
+#    scan:
+#      folder:
+#        - C:\Users\jaluque\Downloads\ORION-FILES\share
+#    temp:
+#      folder: target/test-tmp/files/tmp
+#    download:
+#      folder: C:\Users\jaluque\Downloads\ORION-FILES\download
+  user-profile: 'target/user-profile'
+  p2p:
+    port: 4050
+    limitK: 20
+    bootstrap-ip: 127.0.0.1 #172.20.0.3
+    bootstrap-port: 5050 #172.20.0.3
+    bootstrap-id: "QmXNUMzoutLeYCmTRrB2wq32tF5BhD1ebzgqc9uQCcgaJe" #172.20.0.3

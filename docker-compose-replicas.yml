@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  node1:
+    build:
+      context: .
+    #      dockerfile: Dockerfile
+    networks:
+      lan_node1:
+        ipv4_address: 192.168.10.100 # IP fija para el nodo 1 en su red privada
+      public_network:
+        ipv4_address: 172.20.0.3     # IP fija del nodo 1 en la red pública
+
+    ports:
+      - "5001:4001" # Accesible desde puerto 5001 del host
+    #    environment: *environment # Referencia al bloque definido en `x-variables`
+    environment:
+      ORION_FILES: "${ORION_FILES}"
+      ORION_BOOTSTRAP_IP: "${ORION_BOOTSTRAP_IP}"
+      ORION_BOOTSTRAP_PORT: "${ORION_BOOTSTRAP_PORT}"
+      ORION_BOOTSTRAP_ID: "${ORION_BOOTSTRAP_ID}"
+    #    environment:
+    #      ENABLED_UI: "false"
+    #      ORION_P2P_LISTEN_PORT: 5001
+    #      ORION_P2P_LISTEN_LIMITK: 20
+    command: >
+      java
+      -Dorion.files.scan.folder=$${ORION_FILES}
+      -Dspring.profiles.active=pro
+      -Dprism.order=sw
+      -Djavafx.headless=true
+      -Dglass.platform=Monocle
+      -Dmonocle.platform=Headless
+      -Dorion.p2p.limitK=20
+      -Dorion.p2p.bootstrap-ip=$${ORION_BOOTSTRAP_IP}
+      -Dorion.p2p.bootstrap-port=$${ORION_BOOTSTRAP_PORT}
+      -Dorion.p2p.bootstrap-id=$${ORION_BOOTSTRAP_ID}
+      -jar /app/orion-application.jar
+      --enabled-ui="false"
+
+networks:
+  public_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24

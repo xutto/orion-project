@@ -1,0 +1,140 @@
+.search-bar-content {
+    -fx-background-color: #2e323c;
+}
+
+
+
+.search-bar-content .label{
+    -fx-font: bold 12px "Segoe UI", Helvetica, Arial, Verdana, sans-serif;
+    -fx-text-fill: #75787e;
+}
+
+.search-bar-content .text-field{
+    -fx-background-color: #1f2129;
+    -fx-text-fill: #cfd2df;
+    -fx-prompt-text-fill: #75787e;
+    -fx-font: 14px "Segoe UI", Helvetica, Arial, Verdana, sans-serif;
+}
+
+
+.search-bar-content .text-field:focused{
+    -fx-background-color: #1f2129;
+    -fx-text-fill: #cfd2df;
+    -fx-font: 14px "Segoe UI", Helvetica, Arial, Verdana, sans-serif;
+}
+
+
+/* TabPane base: transparente para integrarse con tu layout oscuro */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+/* Fondo del header de pestañas (la banda donde están las tabs) */
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: #141518; /* mismo que tu raíz */
+}
+
+/* Área de contenido de la pestaña (debajo de las tabs) */
+.tab-pane > .tab-content-area {
+    -fx-background-color: transparent; /* evita gris claro por defecto */
+}
+
+/* Espaciado y bordes suaves de las pestañas */
+/* Pestaña no seleccionada (idle) */
+.tab-pane .tab {
+    -fx-background-color: #1a1c22;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3 3 0 0;
+    -fx-padding: 4 14 4 14; /* alto x lateral */
+    -fx-opacity: 1; /* evita aspecto "apagado" si no está enfocada */
+}
+
+/* Texto de la pestaña */
+.tab-pane .tab .tab-label {
+    -fx-font-weight: 600;
+    -fx-text-fill: #9aa3b2; /* color legible en oscuro para no seleccionadas */
+    -fx-font-style: italic;
+    -fx-padding: 0 8 0 0;
+}
+
+
+/* Hover sobre pestaña no seleccionada */
+.tab-pane .tab:hover {
+    -fx-background-color: #1f232b; /* un poco más clara al pasar el ratón */
+}
+.tab-pane .tab:hover .tab-label {
+    -fx-text-fill: #cfd3dc; /* mejora legibilidad en hover */
+}
+
+/* Pestaña seleccionada */
+.tab-pane .tab:selected {
+    -fx-background-radius: 3 3 0 0;
+    -fx-background-color: #2e323c; /* tu color de tarjetas */
+}
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #ffffff; /* blanco pleno en seleccionada */
+}
+
+/* Quitar halo/indicador de foco azul en la tab seleccionada */
+.tab-pane:focused .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+/* Botón de cerrar en las tabs (si usas ALL_TABS) */
+.tab-pane .tab .tab-close-button {
+    -fx-background-color: #2e323c;
+    -fx-opacity: 0.7;
+    -fx-padding: 10;
+}
+.tab-pane .tab:hover .tab-close-button,
+.tab-pane .tab:selected .tab-close-button {
+    -fx-opacity: 1.0;
+}
+.tab-pane .tab .tab-close-button:hover {
+    -fx-background-color: #b6b6b6; /* puntito blanco al pasar el ratón */
+}
+
+/* Opcional: pequeños ajustes de padding del header */
+.tab-pane:top > .tab-header-area {
+    -fx-padding: 0 8 0 8;
+}
+
+
+
+.button-download {
+    -fx-background-color: #7b1d1d;
+    -fx-background-radius: 2px;
+    -fx-text-fill: #c9ccda;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(158, 0, 0, 0.34);
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+}
+
+
+.button-download:hover {
+    -fx-font-family: "Roboto";
+    -fx-background-color: #681a1a;
+    -fx-text-fill: #daddec;
+}
+
+.button-download:pressed {
+    -fx-background-color: #551717;
+    -fx-text-fill: #ffffff;
+}
+
+.button-download .text {
+    -fx-font-family: "Roboto";
+}
+
+.button-download:disabled {
+    -fx-background-color: #616161;
+    -fx-text-fill: #bababa;
+    -fx-border-width: 0px;
+}
+
+.download-icon:disabled {
+    -fx-opacity: 0.5;
+}

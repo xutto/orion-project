@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<HBox stylesheets="@style/files.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mac.orion.infrastructure.ui.controller.FilesController">
+   <children>
+     <MFXScrollPane style="-fx-background-color: #141518;" HBox.hgrow="ALWAYS" fitToHeight="true"
+       fitToWidth="true" styleClass="app-application-scroll-pane"
+       thumbColor="#2e323c" thumbHoverColor="#1d1f25" trackColor="#141518">
+         <content>
+            <HBox>
+               <children>
+                  <VBox id="files-app-application" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TableView id="files-table" fx:id="filesTable" minWidth="800.0" stylesheets="@style/tables.css" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="filesNameColumn" minWidth="200.0" prefWidth="-1.0" text="NAME" />
+                              <TableColumn fx:id="filesPathColumn" minWidth="200.0" prefWidth="-1.0" text="PATH" />
+                            <TableColumn fx:id="filesSizeColumn" minWidth="200.0" prefWidth="-1.0" text="SIZE" />
+                              <TableColumn fx:id="filesHashColumn" minWidth="200.0" prefWidth="-1.0" text="HASH" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </MFXScrollPane>
+   </children>
+</HBox>

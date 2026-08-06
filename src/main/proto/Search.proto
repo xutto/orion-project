@@ -1,0 +1,21 @@
+syntax = "proto3";
+import "Peer.proto";
+
+package com.mac.orion.infrastructure.p2p.model;
+
+option java_outer_classname = "Search";
+
+message SearchInfo{
+  oneof payload {
+    SearchInfoRequest request = 1;
+  }
+}
+
+message SearchInfoRequest {
+  bytes id = 1; // id de la busqueda uuid
+  bytes snippet = 2;
+  int32 depth = 3;
+  int32 limit = 4;
+  PeerData peerFinder = 5;
+}
+

@@ -1,0 +1,18 @@
+{
+  "directories": {
+    "scan": ["shared"],
+    "download": "downloads",
+    "temp": "temp"
+  },
+  "p2p": {
+    "client": {
+      "port": "4050",
+      "limitK": 20
+    },
+    "bootstrap": {
+      "ip": "",
+      "port": "5050",
+      "id": ""
+    }
+  }
+}

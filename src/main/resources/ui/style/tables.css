@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'Roboto-regular';
+    src: url('../fonts/roboto/Roboto-Regular.ttf');
+}
+
+
+.table-view {
+    -fx-background-color: #2e323c; /* Fondo oscuro de la tabla */
+    -fx-border-color: transparent; /* Sin bordes */
+    -fx-text-fill: white; /* Texto en blanco */
+}
+
+.table-view .column-header {
+    -fx-background-color: #23262e; /* Fondo oscuro para las cabeceras */
+    -fx-padding: 0 10px; /* Espaciado interno */
+    -fx-border-width: 0px; /* Sin bordes */
+    -fx-border-color: #2e323c;
+    -fx-min-height: 40px; /* Altura mínima de 45px */
+    -fx-pref-height: 40px; /* Altura preferida de 45px */
+
+}
+.table-view .filler {
+    -fx-background-color: #23262e; /* Elimina el color claro en el área de scroll */
+}
+
+/* Fondo de las cabeceras */
+.table-view .column-header-background {
+    -fx-background-color: #3b3f46;  /* Fondo oscuro de las cabeceras */
+    -fx-border-color: transparent;  /* Sin bordes */
+}
+
+.table-view .column-header .label {
+    -fx-alignment: center-left; /* Alineación del texto */
+    -fx-font: bold 16px "Segoe UI", Helvetica, Arial, Verdana, sans-serif;
+    -fx-text-fill: #CCC;
+}
+
+/* Filas de la tabla */
+.table-row-cell {
+    -fx-background-color: #2e323c;  /* Fondo oscuro para las filas */
+    -fx-background-radius: 3;
+    -fx-border-color: rgba(0,0,0,0.2);  /* Sin bordes */
+    -fx-border-width: 0 0 1 0;
+    -fx-background-insets: 0;
+}
+
+.table-row-cell:filled:selected {
+    -fx-border-color: rgba(255,255,255,0.08);
+}
+
+/* Hover sobre fila */
+.table-row-cell:filled:hover {
+    -fx-background-color: #383d49;      /* hover oscuro */
+    -fx-background-radius: 3;           /* hover */
+    -fx-background-insets: 0;
+    /*-fx-cursor: hand;*/
+}
+
+/* Fila seleccionada (y seleccionada+hover) */
+.table-row-cell:filled:selected,
+.table-row-cell:filled:selected:hover {
+    -fx-background-color: #4c5263;      /* color de selección */
+    -fx-background-radius: 3;           /* selección */
+    -fx-background-insets: 0;
+}
+
+/* Texto dentro de la fila seleccionada */
+.table-row-cell:filled:selected .text {
+    -fx-fill: #ffffff;
+}
+
+/* Elimina el halo/indicador de foco azul por defecto */
+.table-view:focused .table-row-cell:filled:selected {
+    -fx-background-insets: 0;
+    -fx-background-radius: 3;            /* opcional: bordes suaves */
+}
+
+
+
+.table-view .corner {
+    -fx-background-color: #2e323c; /* Color oscuro para que combine con las cabeceras */
+}
+
+.table-row-cell .label{
+    -fx-text-fill: white;
+}
+
+/* Celdas de la tabla */
+.table-cell {
+    -fx-background-color: transparent;  /* Fondo de las celdas */
+    -fx-text-fill: white;           /* Texto en blanco */
+    -fx-padding: 8px;               /* Espaciado interno */
+    -fx-border-color: transparent;  /* Sin bordes */
+}
+
+.table-view .scroll-bar:vertical .thumb{
+    -fx-background-radius: 4px;
+}
+
+.table-view .scroll-bar:vertical {
+    -fx-pref-width: 8px;
+}
+
+/* Personalización de barras de desplazamiento (scroll) */
+/* Fondo del track de scroll */
+
+/*
+.scroll-bar:vertical .track, .scroll-bar:horizontal .track {
+    -fx-background-color: #2e323c;  !* Fondo oscuro del track de scroll *!
+}
+*/

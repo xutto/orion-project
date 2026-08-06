@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package com.mac.orion.infrastructure.p2p.model;
+
+option java_outer_classname = "FileTransfer";
+
+enum MessageType {
+  FILE_GET = 0;
+  FILE_AVAILABILITY = 1;
+  NEXT_WINDOW = 2;
+  FILE_CHUNK = 3;
+  //  WINDOW_END = 4;
+  TRANSFER_END = 4;
+  FILE_ERROR = 5;
+}
+
+message FileMessage {
+  MessageType messageType = 1;
+  Hash hash = 2;
+  int64 size = 3;
+  // FileGet fileGet = 3; todo maybe define in future
+  FileAvailability fileAvailability = 5;
+  NextWindow nextWindow = 6;
+  FileFragment fileFragment = 7;
+  FileChunk fileChunk = 8;
+  TransferEnd transferEnd = 9;
+  FileError fileError = 10;
+
+}
+
+message Hash {
+  bytes value = 1;
+}
+
+//message FileGet {
+//  // unknown
+//}
+
+message FileAvailability {
+  bytes availability = 1; // BitSet
+}
+
+message NextWindow {
+  int32 index = 1;
+  bool last = 2;
+}
+
+message FileChunk{
+  int32 index = 1;
+  bytes data = 2;
+  bool last = 3;
+}
+
+message FileFragment {
+  Hash hash = 1;
+  int32 index = 2;
+  int32 size = 3;
+
+}
+
+message TransferEnd{
+  int64 totalFragments = 1;
+}
+
+message FileError {
+  bytes code = 1;
+  bytes message = 2;
+  int64 fragment = 3;
+}

@@ -1,0 +1,29 @@
+/* ===== ProgressBar ===== */
+
+.download-progress {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* carril */
+.download-progress .track {
+    -fx-background-color: #3b414a;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3;
+    -fx-pref-height: 10px;
+}
+
+/* progreso */
+.download-progress .bar {
+    -fx-background-color: #17c451;
+    /*-fx-background-insets: 0;*/
+    -fx-background-radius: 3;
+    -fx-padding: 8;
+    -fx-pref-height: 20px;
+}
+
+/* dentro de tabla */
+/*.progress-bar-cell .download-progress {*/
+/*    -fx-max-height: 10px;*/
+/*    -fx-pref-height: 10px;*/
+/*}*/

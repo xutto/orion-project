@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<HBox stylesheets="@style/search-result.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MFXScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #141518;" styleClass="app-application-scroll-pane" thumbColor="#2e323c" thumbHoverColor="#1d1f25" trackColor="#141518" HBox.hgrow="ALWAYS">
+         <content>
+            <HBox>
+               <children>
+                  <VBox id="search-result-app-application" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TableView id="search-table" fx:id="searchTable" stylesheets="@style/tables.css" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="searchNameColumn" minWidth="200.0" text="NAME" />
+                              <TableColumn fx:id="searchFilePeersColumn" minWidth="200.0" text="SEEDS" />
+                              <TableColumn fx:id="searchSizeColumn" minWidth="200.0" text="SIZE" />
+                              <TableColumn fx:id="searchHashColumn" minWidth="200.0" text="HASH" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </MFXScrollPane>
+   </children>
+</HBox>

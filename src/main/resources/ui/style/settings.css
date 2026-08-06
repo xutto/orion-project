@@ -1,0 +1,422 @@
+/*  SETTINGS */
+
+.settings-content {
+  -fx-background-color: #23262e;
+}
+
+.settings-menu {
+  -fx-background-color: #1d1f25;
+  -fx-border-color: #000000;
+  -fx-border-width: 0 1px 0 0;
+}
+
+.settings-close-bar {
+  -fx-background-color: #23262e;
+  -fx-border-color: #1d1f25;
+  -fx-border-width: 0 1px 0 1px;
+}
+
+.settings-tittle-label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 20px;
+  -fx-text-fill: #9597a2;
+  /*-fx-font-weight: bold;*/
+}
+
+.settings-tittle {
+  -fx-border-style: solid;
+  -fx-border-color: #2b2f3a;
+  -fx-border-width: 0 0 1px 0;
+  -fx-padding: 10px 0 10px 0;
+}
+
+.settings-tittle-container {
+  -fx-padding: 10px 10px 10px 0;
+}
+
+.settings-container {
+  -fx-padding: 10px;
+}
+
+.settings-container-pane {
+  -fx-background-radius: 8px;
+  -fx-padding: 0 6px 0 6px;
+  -fx-cursor: hand;
+}
+
+.settings-container-pane:hover{
+  -fx-background-color: #2a2d37;
+}
+
+.settings-container-pane-active, .settings-container-pane-active:hover{
+  -fx-background-color: #23262e;
+  -fx-cursor: pointer;
+}
+
+.settings-option-label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 14px;
+  -fx-text-fill: #cfcfcf;
+}
+
+.settings-content-tittle {
+  -fx-padding: 0 10px 6px 10px;
+  -fx-border-width: 0 0 1px 0;
+  -fx-border-color: #1d1f25;
+}
+
+.settings-content-tittle > .label {
+  -fx-font-family: "Roboto Bold";
+  -fx-font-size: 16px;
+  -fx-text-fill: #9597a2;
+}
+
+.settings-content-body {
+  -fx-spacing: 16px;
+}
+
+.settings-content-body-tittle {
+  -fx-padding: 0 10px 0 10px;
+}
+
+.settings-content-body-tittle > .label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 14px;
+  -fx-text-fill: #cfcfcf;
+}
+
+.settings-content-body-result {
+
+}
+
+.settings-content-body-result-folder > .label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 12px;
+  -fx-text-fill: #9597a2;
+}
+
+.settings-content-body-result-folder {
+  -fx-border-color: #2a2d37;
+  -fx-border-width:1px;
+  -fx-border-radius: 4px;
+  -fx-padding: 0 10px 0 10px;
+}
+
+.settings-content-body-result-label >.label{
+  -fx-font-family: "Roboto";
+  -fx-font-size: 12px;
+  -fx-text-fill: #9597a2;
+  /*-fx-pref-width: 30px;*/
+  -fx-min-width: 30px;
+}
+
+.settings-content-body-result-label{
+  -fx-padding: 0 10px 0 10px;
+}
+
+.settings-content-body-result-label-borderer >.label{
+  -fx-font-family: "Roboto";
+  -fx-font-size: 12px;
+  -fx-text-fill: #9597a2;
+}
+
+.settings-content-body-result-label-borderer{
+  -fx-padding: 0 8px 0 8px;
+  -fx-background-color: #1f2229;
+  -fx-border-color: #48484e;
+  -fx-border-width: 1px;
+  -fx-border-radius: 4px;
+}
+
+
+.settings-content-body-result-button {
+  -fx-padding: 0 10px 0 10px;
+}
+
+.settings-content-body-result-button .button {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 12px;
+  -fx-pref-width: 70px;
+
+}
+
+.settings-content-body-option{
+  -fx-padding: 0 10px 0 10px;
+}
+
+.folder-icon > .icon {
+  -fx-fill: #9597a2;
+  -fx-scale-y: 0.04;
+  -fx-scale-x: 0.04;
+}
+
+.gear-icon {
+  /*-fx-padding: 10px 0 10px 0;*/
+  -fx-border-style: solid;
+  -fx-border-color: #2b2f3a;
+  -fx-border-width: 0 0 1px 0;
+}
+
+.gear-icon > .icon {
+  -fx-fill: #9597a2;
+  -fx-scale-y: 0.04;
+  -fx-scale-x: 0.04;
+}
+
+.user-icon {
+  /*-fx-padding: 10px 0 10px 0;*/
+  -fx-border-style: solid;
+  -fx-border-color: #2b2f3a;
+  -fx-border-width: 0 0 1px 0;
+}
+
+.user-icon > .icon{
+  -fx-fill: #9597a2;
+  -fx-scale-y: 0.04;
+  -fx-scale-x: 0.04;
+}
+
+.help-icon:hover{
+  -fx-cursor: hand;
+}
+
+.help-icon > .icon {
+  -fx-fill: #f59e0b;
+  -fx-scale-y: 0.04;
+  -fx-scale-x: 0.04;
+}
+
+.copy-icon{
+  -fx-cursor: hand;
+}
+
+.copy-icon > .icon {
+  -fx-fill: #9597a2;
+  -fx-scale-y: 0.04;
+  -fx-scale-x: 0.04;
+}
+
+
+
+.folder-icon-orange > .icon{
+  -fx-fill: #f59e0b;
+  -fx-scale-y: 0.04;
+  -fx-scale-x: 0.04;
+}
+
+.close-icon {
+  -fx-background-color: #5a5a5a;
+  -fx-background-radius: 6px;
+}
+
+.close-icon:hover > .icon {
+  -fx-fill: #272727;
+}
+
+.close-icon:hover {
+  -fx-background-color: #757575;
+  -fx-cursor: hand;
+}
+
+.delete-icon{
+  -fx-cursor: hand;
+}
+
+.delete-icon > .icon {
+  -fx-fill: #d81a1a;
+  -fx-scale-x: 0.04;
+  -fx-scale-y: 0.04;
+}
+
+.settings-close-bar {
+  -fx-padding: 104px 0 0 0;
+}
+
+/* treeView shared folders */
+
+/* TreeView general */
+.shared-treeview {
+  -fx-background-color: #2a2d35;
+  -fx-control-inner-background: #1d1f25;
+  -fx-border-color: #1d1f25;
+  -fx-border-radius: 6;
+  -fx-background-radius: 6;
+  -fx-padding: 4;
+}
+
+/* Fondo interno */
+.shared-treeview .virtual-flow,
+.shared-treeview .clipped-container,
+.shared-treeview .sheet {
+  -fx-background-color: #595959
+}
+
+/* Filas */
+.shared-treeview-cell {
+  -fx-background-color: #222429;
+  -fx-text-fill: #dddddd;
+  -fx-padding: 6 8 6 8;
+  -fx-font-size: 13px;
+}
+
+/* Filas vacías */
+.shared-treeview-cell:empty {
+  -fx-background-color: #222429;
+  -fx-border-color: transparent;
+}
+
+.shared-treeview-cell:empty:hover {
+  -fx-background-color: #222429;
+  -fx-border-color: transparent;
+}
+
+.shared-treeview-cell:empty .text {
+  -fx-fill: transparent;
+}
+
+.shared-treeview-cell:empty .check-box {
+  visibility: hidden;
+}
+
+/* Texto */
+.shared-treeview-cell .text {
+  -fx-fill: #dddddd;
+}
+
+/* Hover */
+.shared-treeview-cell:hover {
+  -fx-background-color: #222429;
+}
+
+/* Fila seleccionada */
+.shared-treeview-cell:selected {
+  -fx-background-color: #222429;
+  -fx-text-fill: white;
+}
+
+.shared-treeview-cell:selected .text {
+  -fx-fill: white;
+}
+
+/* CheckBox */
+.shared-treeview-cell .check-box .box {
+  -fx-background-color: #3a3a3a;
+  -fx-border-color: #595959;
+  -fx-border-radius: 3;
+  -fx-background-radius: 3;
+}
+
+/* Marca selected */
+.shared-treeview-cell .check-box:selected .mark {
+  -fx-background-color: #1ab600;
+}
+
+/* Marca indeterminate */
+.shared-treeview-cell .check-box:indeterminate .mark {
+  -fx-background-color: #1ab600;
+}
+
+/* Flecha desplegable */
+.shared-treeview-cell .tree-disclosure-node .arrow {
+  -fx-background-color: #cccccc;
+}
+
+.shared-treeview-cell:expanded .tree-disclosure-node .arrow {
+  -fx-background-color: white;
+}
+
+/* Scrollbar */
+.shared-treeview .scroll-bar {
+  -fx-background-color: #141518;
+}
+
+.shared-treeview .scroll-bar .track {
+  -fx-background-color: #141518;
+}
+
+.shared-treeview .scroll-bar .thumb {
+  -fx-background-color: #2e323c;
+  -fx-background-radius: 6;
+}
+
+.shared-treeview .scroll-bar .thumb:hover {
+  -fx-background-color: #1d1f25;
+}
+
+.shared-treeview .corner {
+  -fx-background-color: #141518;
+}
+
+/* Botones de flecha */
+.shared-treeview .scroll-bar .increment-button,
+.shared-treeview .scroll-bar .decrement-button {
+  -fx-background-color: #141518;
+  -fx-pref-height: 10;
+  -fx-pref-width: 10;
+}
+
+/* Bootstrap fields */
+#bootstrap-ip-field, #bootstrap-port-field, #bootstrap-id-field, #owner-port-field {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 12px;
+  -fx-text-fill: #cfcfcf;
+  -fx-background-color: #1d1f25;
+  -fx-border-color: #2a2d37;
+  -fx-border-width: 1px;
+  -fx-border-radius: 4px;
+  -fx-padding: 6px 8px 6px 8px;
+  -fx-prompt-text-fill: #595959;
+}
+
+#bootstrap-ip-field:focused, #bootstrap-port-field:focused, #bootstrap-id-field:focused {
+  -fx-border-color: #3a3a3a;
+  -fx-border-width: 2px;
+}
+
+/* Bootstrap list container */
+#bootstrap-list-container {
+  -fx-border-color: #2a2d37;
+  -fx-border-width: 1px;
+  -fx-border-radius: 4px;
+  -fx-padding: 8px;
+  -fx-background-color: #1d1f25;
+}
+
+/* LimitK spinner */
+.spinner-standard {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 12px;
+  -fx-text-fill: #cfcfcf;
+  -fx-background-color: #1d1f25;
+  -fx-border-color: #2a2d37;
+  -fx-border-width: 1px;
+  -fx-border-radius: 4px;
+  -fx-padding: 6px 8px 6px 8px;
+}
+
+.spinner-standard .text-field {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+  -fx-text-fill: #cfcfcf;
+  -fx-font-size: 12px;
+}
+
+.spinner-standard .increment-arrow-button,
+.spinner-standard .decrement-arrow-button {
+  -fx-background-color: #2a2d37;
+  -fx-border-color: #2a2d37;
+  -fx-border-radius: 4px;
+  -fx-padding: 2px 6px 2px 6px;
+}
+
+.spinner-standard .increment-arrow-button:hover,
+.spinner-standard .decrement-arrow-button:hover {
+  -fx-background-color: #3a3a3a;
+}
+
+
+/*  thumbColor="#2e323c" thumbHoverColor="#1d1f25" trackColor="#141518" */
+
+/* treeView shared folders */
+
+/*  SETTINGS */

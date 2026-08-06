@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  bootstrap:
+    build:
+      context: .
+    networks:
+      lan_node_bootstrap:
+        ipv4_address: 192.168.1.100 # IP fija para el nodo 1 en su red privada
+      public_network:
+        ipv4_address: 172.20.0.2     # IP fija del nodo 1 en la red pública
+
+    ports:
+      - "4001:4001" # Accesible desde puerto 4001 del host
+    environment:
+      ORION_PORT: 4001
+      ORION_FILES: "${ORION_FILES}"
+      ORION_BOOTSTRAP_IP: "${ORION_BOOTSTRAP_IP}"
+      ORION_BOOTSTRAP_PORT: "${ORION_BOOTSTRAP_PORT}"
+      ORION_BOOTSTRAP_ID: ""
+    command: >
+      java
+      -Dorion.files.scan.folder=$${ORION_FILES}
+      -Dspring.profiles.active=pro
+      -Dprism.order=sw
+      -Djavafx.headless=true
+      -Dglass.platform=Monocle
+      -Dmonocle.platform=Headless
+      -Dorion.p2p.limitK=20
+      -Dorion.p2p.port=$${ORION_PORT}
+      -Dorion.p2p.bootstrap-ip=$${ORION_BOOTSTRAP_IP}
+      -Dorion.p2p.bootstrap-port=$${ORION_BOOTSTRAP_PORT}
+      -Dorion.p2p.bootstrap-id=$${ORION_BOOTSTRAP_ID}
+      -jar /app/orion-application.jar
+      --enabled-ui="false"
+
+networks:
+  lan_node_bootstrap:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+  public_network:
+    external: true
+#    driver: bridge
+#    ipam:
+#      config:
+#        - subnet: 172.20.0.0/24

@@ -1,0 +1,12 @@
+logging:
+  level:
+    root: info
+    io.libp2p: debug
+
+orion:
+  files:
+    scan:
+      folder: >
+        D:\Download\ORION-FILES\share
+  p2p:
+    listen: "/ip4/127.0.0.1/tcp/4001"

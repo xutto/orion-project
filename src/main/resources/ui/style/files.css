@@ -1,0 +1,35 @@
+/* FILES APP PANEL */
+
+.files-app-application-scroll-pane{
+    -fx-background-color: #141518; /* ESTA PROPIEDAD ESTA DEFINIDA EN EL FXML PORQUE NO HACE EFECTO */
+}
+
+.files-app-application{
+    -fx-background-color: #141518; ;
+}
+
+.header-files-content{
+
+}
+
+.header-files {
+    -fx-background-color: #1d1f25; ;
+}
+
+/*.header-files .label{*/
+/*    -fx-font: bold 18px "Segoe UI", Helvetica, Arial, Verdana, sans-serif;*/
+/*    -fx-text-fill: #CCC;*/
+/*}*/
+
+.row-files-content{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #1d1f25;
+}
+
+.row-files {
+    -fx-background-color: #23262e;
+}
+.row-files .label{
+    -fx-font: bold 14px "Segoe UI", Helvetica, Arial, Verdana, sans-serif;
+    -fx-text-fill: #c5c8d8;
+}

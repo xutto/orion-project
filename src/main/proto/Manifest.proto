@@ -1,0 +1,25 @@
+syntax = "proto3";
+import "Discovery.proto";
+import "Peer.proto";
+
+package com.mac.orion.infrastructure.p2p.model;
+
+option java_outer_classname = "Manifest";
+
+
+message FileSharer{
+  oneof payload {
+    FileSharerRequest  request = 1;
+  }
+}
+
+message FileSharerRequest{
+  repeated FileManifest filesManifest = 1;
+}
+
+message FileManifest {
+  bytes hash = 1;
+  repeated bytes names = 2;
+  int64 size = 3;
+  repeated PeerSharer sharingPeers = 4; // todo en el futuro igual hay que poner el peer del discovery igual, si se usa el lastSeen en ese proceso
+}

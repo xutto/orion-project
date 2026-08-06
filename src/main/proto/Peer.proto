@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.mac.orion.infrastructure.p2p.model;
+
+option java_outer_classname = "Peer";
+
+message PeerData {
+  bytes id = 1;
+  repeated PeerAddress address = 2;
+}
+
+message PeerAddress {
+  bytes ip = 1;
+  int32 port = 2;
+  bytes type = 3;
+  bytes transmission = 4;
+
+}
+
+message PeerSharer {
+  bytes id = 1;
+  int64 lastSeen = 2;
+  repeated PeerAddress address = 3;
+}

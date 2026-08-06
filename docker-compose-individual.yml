@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  node:
+    build:
+      context: .
+    #      dockerfile: Dockerfile
+
+    networks:
+      lan_node: {}
+      #        ipv4_address: 192.168.${SUBNET_IP}.100 # IP fija para el nodo 1 en su red privada
+
+      public_network: {}
+    ports:
+      - "${NODE_PORT}:${NODE_PORT}"
+    environment:
+      ORION_PORT: "${NODE_PORT}"
+      ORION_FILES: "${ORION_FILES}"
+      ORION_BOOTSTRAP_IP: "${ORION_BOOTSTRAP_IP}"
+      ORION_BOOTSTRAP_PORT: "${ORION_BOOTSTRAP_PORT}"
+      ORION_BOOTSTRAP_ID: "${ORION_BOOTSTRAP_ID}"
+      SUBNET_IP: "${SUBNET_IP}"
+    command: >
+      java -Dorion.files.scan.folder=$${ORION_FILES} -Dspring.profiles.active=pro -Dprism.order=sw -Djavafx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dorion.p2p.limitK=20 -Dorion.p2p.port=$${ORION_PORT} -Dorion.p2p.bootstrap-ip=$${ORION_BOOTSTRAP_IP} -Dorion.p2p.bootstrap-port=$${ORION_BOOTSTRAP_PORT} -Dorion.p2p.bootstrap-id=$${ORION_BOOTSTRAP_ID} -jar /app/orion-application.jar --enabled-ui="false"
+
+networks:
+  public_network:
+    external: true
+  lan_node:
+    external: true
+
+# En sistemas Unix
+# sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
+# sudo chmod +x /usr/bin/yq

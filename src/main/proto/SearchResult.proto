@@ -1,0 +1,16 @@
+syntax = "proto3";
+import "Manifest.proto";
+package com.mac.orion.infrastructure.p2p.model;
+
+option java_outer_classname = "SearchResult";
+
+message SearchInfoResult {
+  oneof payload {
+    SearchFilesResult request = 1;
+  }
+}
+
+message SearchFilesResult{
+  bytes id = 1; // id de la busqueda uuid
+  repeated FileManifest files = 2;
+}

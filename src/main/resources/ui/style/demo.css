@@ -1,0 +1,127 @@
+/* treeView shared folders */
+
+/* TreeView general */
+.shared-treeview {
+  -fx-background-color: #595959;
+  -fx-control-inner-background: #1e1e1e;
+  -fx-border-color: #c6c6c6;
+  -fx-border-radius: 6;
+  -fx-background-radius: 6;
+  -fx-padding: 4;
+}
+
+/* Fondo interno */
+.shared-treeview .virtual-flow,
+.shared-treeview .clipped-container,
+.shared-treeview .sheet {
+    -fx-background-color: #595959
+}
+
+/* Filas */
+.shared-treeview-cell {
+  -fx-background-color: #222429;
+  -fx-text-fill: #dddddd;
+  -fx-padding: 6 8 6 8;
+  -fx-font-size: 13px;
+}
+
+/* Filas vacías */
+.shared-treeview-cell:empty {
+  -fx-background-color: #222429;
+  -fx-border-color: transparent;
+}
+
+.shared-treeview-cell:empty:hover {
+  -fx-background-color: #222429;
+  -fx-border-color: transparent;
+}
+
+.shared-treeview-cell:empty .text {
+  -fx-fill: transparent;
+}
+
+.shared-treeview-cell:empty .check-box {
+  visibility: hidden;
+}
+
+/* Texto */
+.shared-treeview-cell .text {
+  -fx-fill: #dddddd;
+}
+
+/* Hover */
+.shared-treeview-cell:hover {
+  -fx-background-color: #222429;
+}
+
+/* Fila seleccionada */
+.shared-treeview-cell:selected {
+  -fx-background-color: #222429;
+  -fx-text-fill: white;
+}
+
+.shared-treeview-cell:selected .text {
+  -fx-fill: white;
+}
+
+/* CheckBox */
+.shared-treeview-cell .check-box .box {
+  -fx-background-color: #3a3a3a;
+  -fx-border-color: #595959;
+  -fx-border-radius: 3;
+  -fx-background-radius: 3;
+}
+
+/* Marca selected */
+.shared-treeview-cell .check-box:selected .mark {
+  -fx-background-color: #1ab600;
+}
+
+/* Marca indeterminate */
+.shared-treeview-cell .check-box:indeterminate .mark {
+  -fx-background-color: #1ab600;
+}
+
+/* Flecha desplegable */
+.shared-treeview-cell .tree-disclosure-node .arrow {
+  -fx-background-color: #cccccc;
+}
+
+.shared-treeview-cell:expanded .tree-disclosure-node .arrow {
+  -fx-background-color: white;
+}
+
+/* Scrollbar */
+.shared-treeview .scroll-bar {
+  -fx-background-color: #141518;
+}
+
+.shared-treeview .scroll-bar .track {
+  -fx-background-color: #141518;
+}
+
+.shared-treeview .scroll-bar .thumb {
+  -fx-background-color: #2e323c;
+  -fx-background-radius: 6;
+}
+
+.shared-treeview .scroll-bar .thumb:hover {
+  -fx-background-color: #1d1f25;
+}
+
+.shared-treeview .corner {
+  -fx-background-color: #141518;
+}
+
+/* Botones de flecha */
+.shared-treeview .scroll-bar .increment-button,
+.shared-treeview .scroll-bar .decrement-button {
+  -fx-background-color: #141518;
+  -fx-pref-height: 10;
+  -fx-pref-width: 10;
+}
+
+
+/*  thumbColor="#2e323c" thumbHoverColor="#1d1f25" trackColor="#141518" */
+
+/* treeView shared folders */

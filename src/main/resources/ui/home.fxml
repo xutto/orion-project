@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1280.0" stylesheets="/ui/style/main.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mac.orion.infrastructure.ui.controller.HomeController">
+
+   <children>
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox id="main-app" styleClass="main-full">
+               <children>
+                  <VBox id="main-menu" fx:id="mainMenu" minWidth="200.0" prefWidth="200.0" styleClass="main-menu">
+                     <children>
+                        <HBox id="tittle-trademark" alignment="CENTER" prefHeight="120.0" spacing="10.0" styleClass="tittle-trademark">
+                           <children>
+                              <ImageView>
+                                 <image>
+                                    <Image url="/icon/logo_nuevo_64.png" />
+                                 </image>
+                              </ImageView>
+                              <Label id="tittle-trademark-label" styleClass="tittle-trademark-label" text="Orion p2p" textFill="#9597a2">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <HBox id="search-option-content" fx:id="searchOptionContent" alignment="CENTER_LEFT" prefHeight="60.0" spacing="10.0" styleClass="menu-option-content">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" preserveRatio="true" styleClass="menu-option-icon">
+                                 <image>
+                                    <Image url="/icon/search.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefWidth="138.0" styleClass="menu-option-label" text="Search" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox id="transfers-option-content" fx:id="transfersOptionContent" alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="60.0" spacing="10.0" styleClass="menu-option-content">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" preserveRatio="true" styleClass="menu-option-icon">
+                                 <image>
+                                    <Image url="/icon/exchange_32.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefWidth="138.0" styleClass="menu-option-label" text="Transfers" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox id="files-option-content" fx:id="filesOptionContent" alignment="CENTER_LEFT" layoutX="10.0" layoutY="190.0" prefHeight="60.0" spacing="10.0" styleClass="menu-option-content">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" preserveRatio="true" styleClass="menu-option-icon">
+                                 <image>
+                                    <Image url="/icon/Folder_1.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefWidth="138.0" styleClass="menu-option-label" text="Files" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox id="connection-option-content" fx:id="connectionOptionContent" alignment="CENTER_LEFT" layoutX="10.0" layoutY="250.0" prefHeight="60.0" spacing="10.0" styleClass="menu-option-content">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" preserveRatio="true" styleClass="menu-option-icon">
+                                 <image>
+                                    <Image url="/icon/organization-chart_32.png" />
+                                 </image>
+                              </ImageView>
+                              <Label prefWidth="138.0" styleClass="menu-option-label" text="Connection" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox id="main-content" prefWidth="1720.0" styleClass="main-content" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox id="main-bar" minHeight="-Infinity" prefHeight="46.0" spacing="6.0" styleClass="main-bar">
+                           <children>
+                              <HBox id="settings-option-content" fx:id="settingsOptionContent" alignment="CENTER" fillHeight="false" prefWidth="125.0" spacing="12.0" styleClass="main-bar-option">
+                                 <children>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="/icon/settings.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label id="main-bar-option-settings-text" styleClass="main-bar-option-text" text="Settings" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                        </HBox>
+                        <HBox id="app-tittle" prefHeight="100.0">
+                           <children>
+                              <HBox id="app-tittle-text-container" alignment="CENTER" styleClass="app-tittle-text-container" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label id="app-tittle-text" fx:id="appTittleText" styleClass="app-tittle-text" text="Tittle" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <StackPane id="stack-app-container" fx:id="stackAppContainer" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                               <HBox id="files-app-content" fx:id="filesAppContent" styleClass="app-content" visible="false">
+                                  <!-- APPLICATION -->
+            <!--                       <fx:include source="/ui/files.fxml"/>-->
+                                   <!-- SCENEBUILDER -->
+                                   <fx:include source="/ui/files.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS" />
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                               </HBox>
+                              <HBox id="connection-app-content" fx:id="connectionAppContent" styleClass="app-content" visible="false">
+                                 <!-- APPLICATION -->
+          <!--                       <fx:include source="/ui/connection.fxml"/>-->
+                                 <!-- SCENEBUILDER -->
+                                 <fx:include source="/ui/connection.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS" />
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                               <HBox id="search-app-content" fx:id="searchAppContent" styleClass="app-content" visible="false">
+                                   <fx:include source="/ui/search.fxml" HBox.hgrow="ALWAYS" />
+                                   <padding>
+                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                   </padding>
+                               </HBox>
+                              <HBox id="transfers-app-content" fx:id="transfersAppContent" styleClass="app-content">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <children>
+                                    <fx:include source="/ui/transfers.fxml" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <MFXScrollPane id="settings-app-content" fx:id="settingsAppContent" fitToHeight="true" fitToWidth="true" style="-fx-background-color: #141518;" styleClass="app-application-scroll-pane" thumbColor="#2e323c" thumbHoverColor="#1d1f25" trackColor="#141518" visible="false">
+              <content>
+                <fx:include source="/ui/settings.fxml" />
+              </content>
+            </MFXScrollPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
