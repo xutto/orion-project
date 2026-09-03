@@ -35,5 +35,7 @@ build/
 .vscode/
 .deploy/jar
 
+application.db
+
 ### environment pipelines ###
 #*.env
