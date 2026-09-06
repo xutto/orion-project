@@ -46,6 +46,11 @@ public class NodesIdentifierConstants {
   public static final String SETTINGS_TOOLTIP_BOOTSTRAP = "settings-tooltip-bootstrap";
   public static final String SETTINGS_TOOLTIP_LIMIT_K = "settings-tooltip-limit-k";
 
+  public static final String SETTINGS_LABEL_IP = "settings-label-ip";
+  public static final String SETTINGS_LABEL_PORT = "settings-label-port";
+  public static final String SETTINGS_LABEL_NODE_ID = "settings-label-node-id";
+  public static final String SETTINGS_COPY_NODE_ID = "settings-copy-node-id";
+
   // classes constants
   public static final String STYLE_CLASS_MENU_OPTION_CONTENT_SELECTED = "menu-option-content-selected";
   public static final String STYLE_CLASS_SHARED_TREEVIEW_CELL = "shared-treeview-cell";
