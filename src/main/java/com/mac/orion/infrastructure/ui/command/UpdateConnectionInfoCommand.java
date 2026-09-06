@@ -51,6 +51,9 @@ public class UpdateConnectionInfoCommand implements Command<Event> {
         portLabel.setText(connectionInfoProvider.getPort());
         nodeIdLabel.setText(connectionInfoProvider.getPeerId());
 
+        // async: resolves the public IP (https://api.ipify.org) and updates the IP label when ready
+        connectionInfoProvider.refreshPublicIp();
+
         log.info("Connection info updated: {}:{}, peer: {}",
             ipLabel.getText(), portLabel.getText(), nodeIdLabel.getText());
       } catch (Exception e) {

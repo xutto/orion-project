@@ -20,7 +20,6 @@ orion:
 #      folder: C:\Users\jaluque\Downloads\ORION-FILES\download
   user-profile: 'target/user-profile'
   p2p:
-    port: 4050
     limitK: 20
     bootstrap-ip: 127.0.0.1 #172.20.0.3
     bootstrap-port: 5050 #172.20.0.3

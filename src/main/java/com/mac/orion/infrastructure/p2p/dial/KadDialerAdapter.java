@@ -1,9 +1,8 @@
 package com.mac.orion.infrastructure.p2p.dial;
 
-import static com.mac.orion.domain.share.Constants.PROTOCOL_P2P;
-
 import com.google.protobuf.ByteString;
 import com.mac.orion.application.out.KadDialerUseCase;
+import com.mac.orion.application.out.NodeConfigUseCase;
 import com.mac.orion.domain.dht.OperationsType;
 import com.mac.orion.domain.dht.RoutingTable;
 import com.mac.orion.domain.model.Address;
@@ -23,14 +22,16 @@ import io.libp2p.core.StreamPromise;
 import io.libp2p.core.multiformats.Multiaddr;
 import io.libp2p.core.multistream.StrictProtocolBinding;
 import io.libp2p.protocol.IdentifyController;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import static com.mac.orion.domain.share.Constants.PROTOCOL_P2P;
 
 @Slf4j
 @Service
@@ -41,10 +42,7 @@ public class KadDialerAdapter implements KadDialerUseCase {
   private final Host hostNode;
   private final RoutingTable routingTable;
   private final PeerMapper peerMapper;
-
-
-  @Value("${orion.p2p.port}")
-  private String listenAddressPort;
+  private final NodeConfigUseCase nodeConfigUseCase;
 
   @Override
   public void sendAnnounceAndDiscovery(Peer targetPeer) {
@@ -73,7 +71,9 @@ public class KadDialerAdapter implements KadDialerUseCase {
                 .thenAccept(id -> {
                   final HostNode hostNodeData = routingTable.getHostNodeData();
                   final Address addressByIdentify = dialIdentifyToPeer(id);
-                  hostNodeData.getAddresses().add(addressByIdentify);
+                  if (addressByIdentify != null) {
+                    hostNodeData.getAddresses().add(addressByIdentify);
+                  }
 
                   // building request
                   final PeerInfoDiscovery peerInfoRequest = buildDiscoveryRequest(hostNodeData);
@@ -93,16 +93,21 @@ public class KadDialerAdapter implements KadDialerUseCase {
 
   private Address dialIdentifyToPeer(IdentifyOuterClass.Identify id) {
     log.info("Identify response identifyRaw: {}", id);
-    log.debug("Identify response listenAddress: {}", id.getListenAddrsList().stream()
-        .map(a -> Multiaddr.deserialize(a.toByteArray()))
-        .collect(java.util.stream.Collectors.toList()));
+    try {
+      log.debug("Identify response listenAddress: {}", id.getListenAddrsList().stream()
+          .map(a -> Multiaddr.deserialize(a.toByteArray()))
+          .collect(java.util.stream.Collectors.toList()));
 
-    final Multiaddr observedMultiaddr = Multiaddr.deserialize(
-        id.getObservedAddr().toByteArray());
-    log.info("Identify response observableAddress: {}", observedMultiaddr);
+      final Multiaddr observedMultiaddr = Multiaddr.deserialize(
+          id.getObservedAddr().toByteArray());
+      log.info("Identify response observableAddress: {}", observedMultiaddr);
 
-    // /ip4/127.0.0.1/tcp/50503 + port obtained from configuration
-    return peerMapper.mapAddressWithPort(observedMultiaddr, Integer.parseInt(listenAddressPort));
+      // /ip4/127.0.0.1/tcp/50503 + port obtained from the NODE_CONFIG row
+      return peerMapper.mapAddressWithPort(observedMultiaddr, nodeConfigUseCase.getPort());
+    } catch (Exception e) {
+      log.warn("Could not resolve the ObservedAddr from the Identify response, skipping", e);
+      return null;
+    }
   }
 
   private void dialToPeerWithMultiAddress(PeerId peerId, Multiaddr[] receiverAddress,
