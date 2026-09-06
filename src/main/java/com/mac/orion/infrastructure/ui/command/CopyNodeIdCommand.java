@@ -1,7 +1,7 @@
 package com.mac.orion.infrastructure.ui.command;
 
 
-import com.mac.orion.infrastructure.ui.connection.ConnectionInfoProvider;
+import com.mac.orion.application.out.ConnectionInfoProviderUseCase;
 import com.mac.orion.infrastructure.ui.events.EventType;
 import com.mac.orion.infrastructure.ui.nodes.ControllerNodes;
 import javafx.event.Event;
@@ -26,7 +26,7 @@ public class CopyNodeIdCommand implements Command<Event> {
   private final Map<EventType, List<Node>> compatibilities = new HashMap<>();
 
   private final ControllerNodes settingsControllerNodes;
-  private final ConnectionInfoProvider connectionInfoProvider;
+  private final ConnectionInfoProviderUseCase connectionInfoProvider;
 
   @Override
   public Map<EventType, List<Node>> getCompatibilities() {

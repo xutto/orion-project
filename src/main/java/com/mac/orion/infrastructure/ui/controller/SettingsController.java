@@ -76,6 +76,10 @@ public class SettingsController implements UIController {
   private Label settingsLabelNodeId;
   @FXML
   private Node settingsCopyNodeId;
+  @FXML
+  private TextField ownerPortField;
+  @FXML
+  private Button changePortButton;
 
   // LimitK spinner
   @FXML
@@ -143,6 +147,8 @@ public class SettingsController implements UIController {
         .addNode(bootstrapPortField)
         .addNode(bootstrapIdField)
         .addNode(addBootstrapButton)
+        .addNode(ownerPortField)
+        .addNode(changePortButton)
         .addNode(bootstrapListContainer)
         // LimitK spinner
         .addNode(limitKSpinner)

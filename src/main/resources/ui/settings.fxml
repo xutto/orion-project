@@ -251,12 +251,12 @@
                                     </StackPane>
                                     <StackPane alignment="CENTER_LEFT" minHeight="30.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <TextField id="owner-port-field" promptText="Enter valid PORT" styleClass="input-standard" StackPane.alignment="CENTER_LEFT" />
+                                          <TextField id="owner-port-field" fx:id="ownerPortField" promptText="Enter valid PORT" styleClass="input-standard" StackPane.alignment="CENTER_LEFT" />
                                        </children>
                                     </StackPane>
                                     <StackPane minWidth="100.0" styleClass="settings-content-body-result-button">
                                        <children>
-                                          <Button id="add-bootstrap-button" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="button-standard" text="Change port" />
+                                          <Button id="settings-change-port-button" fx:id="changePortButton" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="button-standard" text="Change port" />
                                        </children>
                                     </StackPane>
                                  </children>

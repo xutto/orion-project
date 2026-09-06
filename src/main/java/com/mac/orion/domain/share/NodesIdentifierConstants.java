@@ -50,6 +50,8 @@ public class NodesIdentifierConstants {
   public static final String SETTINGS_LABEL_PORT = "settings-label-port";
   public static final String SETTINGS_LABEL_NODE_ID = "settings-label-node-id";
   public static final String SETTINGS_COPY_NODE_ID = "settings-copy-node-id";
+  public static final String SETTINGS_PORT_FIELD = "owner-port-field";
+  public static final String SETTINGS_CHANGE_PORT_BUTTON = "settings-change-port-button";
 
   // classes constants
   public static final String STYLE_CLASS_MENU_OPTION_CONTENT_SELECTED = "menu-option-content-selected";
