@@ -1,13 +1,11 @@
 package com.mac.orion.protoP2P;
 
-import static com.mac.orion.domain.dht.OperationsType.REMOVE;
-import static com.mac.orion.domain.dht.OperationsType.SAVE;
-
 import com.mac.orion.BaseManualTest;
 import com.mac.orion.application.in.KadConnectorUseCase;
 import com.mac.orion.application.in.KadDiscoveryUseCase;
 import com.mac.orion.application.in.UpdateRoutingTableUseCase;
 import com.mac.orion.application.out.FileSharerDialerUseCase;
+import com.mac.orion.application.out.NodeConfigUseCase;
 import com.mac.orion.application.service.DiscoveryResponderService;
 import com.mac.orion.application.service.FileSharingConnectorService;
 import com.mac.orion.application.service.FilesScanConectorService;
@@ -45,14 +43,6 @@ import io.libp2p.protocol.Identify;
 import io.libp2p.protocol.Ping;
 import io.libp2p.security.noise.NoiseXXSecureChannel;
 import io.libp2p.transport.tcp.TcpTransport;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -63,6 +53,20 @@ import org.apache.lucene.store.Directory;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+
+import static com.mac.orion.domain.dht.OperationsType.REMOVE;
+import static com.mac.orion.domain.dht.OperationsType.SAVE;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @Slf4j
 public class ProtonIntegrationMultiNodesLabP2PTest extends BaseManualTest {
@@ -445,17 +449,12 @@ public class ProtonIntegrationMultiNodesLabP2PTest extends BaseManualTest {
   private KadConnectorService obtainKadConnectorByRemoteHostCompo(HostCompositionSupport firstCompo,
       String port) {
 
+    final NodeConfigUseCase nodeConfigUseCase = mock(NodeConfigUseCase.class);
+    when(nodeConfigUseCase.getPort()).thenReturn(Integer.parseInt(port));
+
     final KadDialerAdapter kadDialerAdapter = new KadDialerAdapter(
         firstCompo.getProtocolFactoryCreator(), firstCompo.getHostNode(),
-        firstCompo.getRoutingTable(), new PeerMapperImpl());
-
-    try {
-      Field listenAddressPort = KadDialerAdapter.class.getDeclaredField("listenAddressPort");
-      listenAddressPort.setAccessible(true); // Permite acceder a campos privados/protegidos
-      listenAddressPort.set(kadDialerAdapter, port); // Inyectar el valor en el campo
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      throw new RuntimeException(e);
-    }
+        firstCompo.getRoutingTable(), new PeerMapperImpl(), nodeConfigUseCase);
 
     return new KadConnectorService(
         new PeerDiscoveryScheduler(firstCompo.getRoutingTable(), kadDialerAdapter));

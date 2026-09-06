@@ -6,6 +6,14 @@ import com.mac.orion.domain.model.settings.Client;
 import com.mac.orion.domain.model.settings.Directories;
 import com.mac.orion.domain.model.settings.P2P;
 import com.mac.orion.domain.model.settings.Settings;
+import com.mac.orion.domain.share.Constants;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,12 +21,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 @Slf4j
 @Configuration
@@ -28,8 +30,6 @@ public class SettingsConfiguration {
 
   //  private static final Path base = Paths.get(System.getenv("USERPROFILE"), ".Orion");
 
-  @Value("${orion.p2p.port}")
-  private String listenAddressPort;
   @Value("${orion.p2p.bootstrap-ip}")
   private String bootstrapAddress;
   @Value("${orion.p2p.bootstrap-port}")
@@ -115,7 +115,7 @@ public class SettingsConfiguration {
 
   private P2P getDefaultP2P() {
 
-    final Client client = new Client(listenAddressPort, limitK);
+    final Client client = new Client(String.valueOf(Constants.P2P_PORT_DEFAULT), limitK);
     final Bootstrap bootstrap = new Bootstrap(bootstrapPort, bootstrapId, bootstrapAddress);
     return new P2P(client, bootstrap);
   }

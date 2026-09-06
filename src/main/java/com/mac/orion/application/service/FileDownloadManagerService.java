@@ -1,29 +1,30 @@
 package com.mac.orion.application.service;
 
-import static com.mac.orion.domain.dht.OperationsType.RECLAIM;
-import static com.mac.orion.domain.dht.OperationsType.RETRIEVE;
-
 import com.mac.orion.application.in.Publisher;
+import com.mac.orion.application.out.FileTransferDialerUseCase;
 import com.mac.orion.domain.Bootable;
 import com.mac.orion.domain.dht.OperationsType;
 import com.mac.orion.domain.model.File;
 import com.mac.orion.domain.model.Hash;
-import com.mac.orion.infrastructure.p2p.dial.FileTransferDialer;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+
+import static com.mac.orion.domain.dht.OperationsType.RECLAIM;
+import static com.mac.orion.domain.dht.OperationsType.RETRIEVE;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class FileDownloadManagerService implements Bootable {
 
-  private final FileTransferDialer fileTransferDialer;
+  private final FileTransferDialerUseCase fileTransferDialer;
   private final Publisher<File> fileDownloadPublisherService;
 
   // Almacén de colas: Hash -> Cola de peticiones pendientes

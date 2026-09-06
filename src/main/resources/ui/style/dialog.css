@@ -1,0 +1,67 @@
+/* =========================================================
+   DIÁLOGOS / ALERTS — tema oscuro de la app
+   Coherente con la paleta de settings.css / main.css:
+   fondo #141518, paneles #23262e, texto #cfcfcf, acento #9597a2.
+   Se aplica al DialogPane de los Alert (que lleva la clase .alert).
+   ========================================================= */
+
+.alert {
+  -fx-background-color: #141518;
+  -fx-background-radius: 8px;
+  -fx-border-color: #1d1f25;
+  -fx-border-width: 1px;
+  -fx-border-radius: 8px;
+  -fx-font-family: "Roboto";
+  -fx-font-size: 13px;
+  -fx-text-background-color: #cfcfcf;
+}
+
+/* Cabecera (título / header text) */
+.alert .header-panel {
+  -fx-background-color: #23262e;
+  -fx-background-radius: 8px 8px 0 0;
+  -fx-border-color: #1d1f25;
+  -fx-border-width: 0 0 1px 0;
+  -fx-padding: 12px 16px 12px 16px;
+}
+
+.alert .header-panel .label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 15px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #cfcfcf;
+}
+
+/* Mensaje de contenido */
+.alert .content-label {
+  -fx-font-family: "Roboto";
+  -fx-font-size: 13px;
+  -fx-text-fill: #cfcfcf;
+  -fx-wrap-text: true;
+  -fx-padding: 14px 16px 8px 16px;
+}
+
+/* Barra de botones */
+.alert .button-bar {
+  -fx-padding: 8px 16px 16px 16px;
+  -fx-spacing: 10px;
+}
+
+.alert .button-bar .button {
+  -fx-background-color: #2a2d37;
+  -fx-background-radius: 6px;
+  -fx-text-fill: #cfcfcf;
+  -fx-font-family: "Roboto";
+  -fx-font-size: 13px;
+  -fx-cursor: hand;
+  -fx-padding: 7px 16px 7px 16px;
+  -fx-pref-width: 96px;
+}
+
+.alert .button-bar .button:hover {
+  -fx-background-color: #2e323c;
+}
+
+.alert .button-bar .button:pressed {
+  -fx-background-color: #1d1f25;
+}
