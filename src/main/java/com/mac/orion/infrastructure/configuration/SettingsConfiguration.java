@@ -36,8 +36,6 @@ public class SettingsConfiguration {
   private String bootstrapPort;
   @Value("${orion.p2p.bootstrap-id}")
   private String bootstrapId;
-  @Value("${orion.p2p.limitK}")
-  private Integer limitK;
   @Value("${orion.user-profile:${USERPROFILE}}")
   private String userProfile;
 
@@ -115,7 +113,7 @@ public class SettingsConfiguration {
 
   private P2P getDefaultP2P() {
 
-    final Client client = new Client(String.valueOf(Constants.P2P_PORT_DEFAULT), limitK);
+    final Client client = new Client(String.valueOf(Constants.P2P_PORT_DEFAULT), Constants.LIMIT_K_DEFAULT);
     final Bootstrap bootstrap = new Bootstrap(bootstrapPort, bootstrapId, bootstrapAddress);
     return new P2P(client, bootstrap);
   }

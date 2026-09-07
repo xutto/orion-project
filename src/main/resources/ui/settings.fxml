@@ -518,6 +518,11 @@
                               <HBox>
                                  <children>
                                     <Spinner id="limitk-spinner" fx:id="limitKSpinner" prefWidth="100.0" styleClass="spinner-standard" />
+                                    <StackPane minWidth="100.0" styleClass="settings-content-body-result-button">
+                                       <children>
+                                          <Button id="settings-apply-limit-k-button" fx:id="applyLimitKButton" minWidth="100.0" mnemonicParsing="false" prefWidth="100.0" styleClass="button-standard" text="Apply" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </HBox>
                            </children>

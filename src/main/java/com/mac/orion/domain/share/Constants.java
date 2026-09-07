@@ -10,4 +10,9 @@ public class Constants {
    */
   public static final int P2P_PORT_DEFAULT = 4050;
 
+  /**
+   * Default LimitK (closest-peers cap in discovery replies); valid range is 1..100.
+   */
+  public static final int LIMIT_K_DEFAULT = 20;
+
 }

@@ -30,6 +30,20 @@ public class NodeConfigAdapter implements NodeConfigUseCase {
     log.info("NODE_CONFIG updated: port={}", port);
   }
 
+  @Override
+  public Integer getLimitK() {
+    final Integer limitK = getNodeConfig().getLimitK();
+    return limitK == null ? Constants.LIMIT_K_DEFAULT : limitK; // defensive: null only on legacy rows
+  }
+
+  @Override
+  public void updateLimitK(int limitK) {
+    final NodeConfigEntity row = getNodeConfig();
+    row.setLimitK(limitK);
+    nodeConfigRepository.save(row);
+    log.info("NODE_CONFIG updated: limitK={}", limitK);
+  }
+
   /**
    * Fixed row (id = 1). If it does not exist (double safety net after the SQL seed),
    * it is created with the default port.
@@ -39,6 +53,7 @@ public class NodeConfigAdapter implements NodeConfigUseCase {
       final NodeConfigEntity row = new NodeConfigEntity();
       row.setId(CONFIG_ROW_ID);
       row.setPort(Constants.P2P_PORT_DEFAULT);
+      row.setLimitK(Constants.LIMIT_K_DEFAULT);
       return nodeConfigRepository.save(row);
     });
   }

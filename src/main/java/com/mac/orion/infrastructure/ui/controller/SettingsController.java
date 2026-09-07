@@ -1,6 +1,7 @@
 package com.mac.orion.infrastructure.ui.controller;
 
 import com.mac.orion.application.in.FileSharingConectorUseCase;
+import com.mac.orion.application.out.NodeConfigUseCase;
 import com.mac.orion.infrastructure.ui.demo.Item;
 import com.mac.orion.infrastructure.ui.nodes.ControllerNodes;
 import javafx.fxml.FXML;
@@ -29,6 +30,7 @@ public class SettingsController implements UIController {
 
   private final ControllerNodes settingsControllerNodes;
   private final FileSharingConectorUseCase fileSharingConectorUseCase;
+  private final NodeConfigUseCase nodeConfigUseCase;
 
   @FXML
   private Node settingsCloseIcon;
@@ -84,6 +86,8 @@ public class SettingsController implements UIController {
   // LimitK spinner
   @FXML
   private Spinner<Integer> limitKSpinner;
+  @FXML
+  private Button applyLimitKButton;
 
   // Help icons
   @FXML
@@ -121,8 +125,8 @@ public class SettingsController implements UIController {
       return cell;
     });
 
-    // Configure the limitK spinner
-    limitKSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 20));
+    // Configure the limitK spinner (initial value from the database, the single source of truth)
+    limitKSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, nodeConfigUseCase.getLimitK()));
 
     settingsControllerNodes
         .addNode(settingsCloseIcon)
@@ -152,6 +156,7 @@ public class SettingsController implements UIController {
         .addNode(bootstrapListContainer)
         // LimitK spinner
         .addNode(limitKSpinner)
+        .addNode(applyLimitKButton)
         // Help icons
         .addNode(connectionDataHelpIcon)
         .addNode(bootstrapNodesHelpIcon)

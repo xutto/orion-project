@@ -13,5 +13,7 @@ public class NodeConfigEntity {
   private Integer id;
   @Column(name = "PORT")
   private Integer port;
+  @Column(name = "LIMIT_K")
+  private Integer limitK;
 
 }

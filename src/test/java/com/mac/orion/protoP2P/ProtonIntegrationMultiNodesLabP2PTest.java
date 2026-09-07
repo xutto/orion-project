@@ -55,7 +55,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -377,15 +376,10 @@ public class ProtonIntegrationMultiNodesLabP2PTest extends BaseManualTest {
 
   @NotNull
   private KadProtocol getKadProtocol(RoutingDataHashTableToTesting ownRoutingDataHashTable) {
+    final NodeConfigUseCase nodeConfig = mock(NodeConfigUseCase.class);
+    when(nodeConfig.getLimitK()).thenReturn(20);
     final DiscoveryResponderService responderService = new DiscoveryResponderService(
-        ownRoutingDataHashTable);
-    try {
-      Field limitKField = DiscoveryResponderService.class.getDeclaredField("limitK");
-      limitKField.setAccessible(true); // Permite acceder a campos privados/protegidos
-      limitKField.set(responderService, 20); // Inyectar el valor en el campo
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      throw new RuntimeException("No se pudo inyectar el valor de limitK", e);
-    }
+        ownRoutingDataHashTable, nodeConfig);
 
     return new KadProtocol(
         new KadDiscoveryProcessService(responderService, updateRoutingTableUseCase),

@@ -1,26 +1,25 @@
 package com.mac.orion.application.service;
 
 import com.mac.orion.application.in.DiscoveryResponderUseCase;
+import com.mac.orion.application.out.NodeConfigUseCase;
 import com.mac.orion.domain.dht.RoutingTable;
 import com.mac.orion.domain.model.Peer;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
 import java.math.BigInteger;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class DiscoveryResponderService implements DiscoveryResponderUseCase {
 
-  @Value("${orion.p2p.limitK}")
-  private Integer limitK;
-
   private final RoutingTable routingTable;
+  private final NodeConfigUseCase nodeConfigUseCase;
 
   @Override
   public Set<Peer> getClosestPeers(final String targetId) {
@@ -28,6 +27,9 @@ public class DiscoveryResponderService implements DiscoveryResponderUseCase {
     final Set<Peer> candidates = routingTable.getAllPeers().stream()
         .peek(p -> log.debug("Peer: {} of routing table before xorDistanceCalculator", p.getId()))
         .collect(Collectors.toSet());
+
+    // Read per query: a value applied from settings takes effect on the next reply, no restart.
+    final int limitK = nodeConfigUseCase.getLimitK();
 
     final Set<Peer> closestCandidates = candidates.stream()
         .filter(peer -> !peer.getId().equals(targetId))

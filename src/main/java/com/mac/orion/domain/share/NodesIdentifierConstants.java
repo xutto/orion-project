@@ -52,6 +52,8 @@ public class NodesIdentifierConstants {
   public static final String SETTINGS_COPY_NODE_ID = "settings-copy-node-id";
   public static final String SETTINGS_PORT_FIELD = "owner-port-field";
   public static final String SETTINGS_CHANGE_PORT_BUTTON = "settings-change-port-button";
+  public static final String SETTINGS_LIMIT_K_SPINNER = "limitk-spinner";
+  public static final String SETTINGS_APPLY_LIMIT_K_BUTTON = "settings-apply-limit-k-button";
 
   // classes constants
   public static final String STYLE_CLASS_MENU_OPTION_CONTENT_SELECTED = "menu-option-content-selected";

@@ -39,7 +39,6 @@ orion:
 #    download:
 #      folder: ${DOWNLOAD_FOLDER}
   p2p:
-    limitK: 20
     bootstrap-ip: "" #172.20.0.3
     bootstrap-port: 8000 #172.20.0.3
     bootstrap-id: "" #172.20.0.3
