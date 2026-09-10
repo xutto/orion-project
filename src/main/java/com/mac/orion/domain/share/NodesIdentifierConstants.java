@@ -55,6 +55,11 @@ public class NodesIdentifierConstants {
   public static final String SETTINGS_LIMIT_K_SPINNER = "limitk-spinner";
   public static final String SETTINGS_APPLY_LIMIT_K_BUTTON = "settings-apply-limit-k-button";
 
+  public static final String SETTINGS_BOOTSTRAP_IP_FIELD = "bootstrap-ip-field";
+  public static final String SETTINGS_BOOTSTRAP_PORT_FIELD = "bootstrap-port-field";
+  public static final String SETTINGS_BOOTSTRAP_ID_FIELD = "bootstrap-id-field";
+  public static final String SETTINGS_ADD_BOOTSTRAP_BUTTON = "add-bootstrap-button";
+
   // classes constants
   public static final String STYLE_CLASS_MENU_OPTION_CONTENT_SELECTED = "menu-option-content-selected";
   public static final String STYLE_CLASS_SHARED_TREEVIEW_CELL = "shared-treeview-cell";

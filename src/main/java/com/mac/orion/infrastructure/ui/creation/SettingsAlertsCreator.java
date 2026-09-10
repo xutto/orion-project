@@ -18,6 +18,10 @@ public class SettingsAlertsCreator implements Creator {
   public static final String LIMIT_K_ALERT_TITLE = "LimitK";
   public static final String INVALID_LIMIT_K_MESSAGE = "Invalid LimitK. Enter a value between 1 and 100.";
 
+  public static final String BOOTSTRAP_ALERT_TITLE = "Bootstrap";
+  public static final String INVALID_BOOTSTRAP_MESSAGE =
+      "Invalid bootstrap. Enter a valid IPv4 address, a port between 1 and 65535 and a valid peer ID.";
+
   public static final String CHANGE_PORT_TITLE = "Change port";
   public static final String PORT_CHANGE_CONFIRMATION_HEADER_TEXT = "Changing the port will RESTART the connection.";
   public static final String PORT_CHANGE_CONFIRMATION_TEXT = "The node will get a NEW peer ID and existing peers will lose their routing data about this node.\n"
@@ -51,6 +55,19 @@ public class SettingsAlertsCreator implements Creator {
     alert.setTitle(LIMIT_K_ALERT_TITLE);
     alert.setHeaderText(null);
     alert.setContentText(INVALID_LIMIT_K_MESSAGE);
+    applyDialogStyle(alert);
+    return alert;
+  }
+
+  /**
+   * Warning for an invalid bootstrap contact (bad IPv4, out-of-range port or not a valid peer ID).
+   * Single OK button; also closable with ESC (native Alert behavior).
+   */
+  public Alert createInvalidBootstrapAlert() {
+    final Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setTitle(BOOTSTRAP_ALERT_TITLE);
+    alert.setHeaderText(null);
+    alert.setContentText(INVALID_BOOTSTRAP_MESSAGE);
     applyDialogStyle(alert);
     return alert;
   }
