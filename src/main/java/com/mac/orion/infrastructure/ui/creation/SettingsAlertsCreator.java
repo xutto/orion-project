@@ -21,6 +21,10 @@ public class SettingsAlertsCreator implements Creator {
   public static final String BOOTSTRAP_ALERT_TITLE = "Bootstrap";
   public static final String INVALID_BOOTSTRAP_MESSAGE =
       "Invalid bootstrap. Enter a valid IPv4 address, a port between 1 and 65535 and a valid peer ID.";
+  public static final String DELETE_BOOTSTRAP_TITLE = "Delete bootstrap";
+  public static final String DELETE_BOOTSTRAP_HEADER_TEXT = "Delete this bootstrap node?";
+  public static final String DELETE_BOOTSTRAP_TEXT =
+      "It will no longer be used as a KAD gateway at startup.\nExisting peers are NOT affected.";
 
   public static final String CHANGE_PORT_TITLE = "Change port";
   public static final String PORT_CHANGE_CONFIRMATION_HEADER_TEXT = "Changing the port will RESTART the connection.";
@@ -36,6 +40,12 @@ public class SettingsAlertsCreator implements Creator {
    * Owned here so ChangePortCommand compares against the same instance it is shown with.
    */
   public static final ButtonType PORT_RESTART = new ButtonType("Restart");
+
+  /**
+   * Custom "Delete" button (ButtonType.DELETE does not exist in standard JavaFX). Owned here so
+   * BootstrapDeleteCommand compares against the same instance it is shown with.
+   */
+  public static final ButtonType DELETE_CONFIRM = new ButtonType("Delete");
 
   private static final String DIALOG_STYLESHEET =
       SettingsAlertsCreator.class.getResource("/ui/style/dialog.css").toExternalForm();
@@ -70,6 +80,21 @@ public class SettingsAlertsCreator implements Creator {
     alert.setContentText(INVALID_BOOTSTRAP_MESSAGE);
     applyDialogStyle(alert);
     return alert;
+  }
+
+  /**
+   * Confirmation before deleting a bootstrap node (DECISIÓN-05, matiz: accepts/cancels).
+   * Buttons: {@link #DELETE_CONFIRM} and CANCEL; compare the result with
+   * {@code showAndWait().filter(b -> b == DELETE_CONFIRM)}.
+   */
+  public Alert createDeleteBootstrapConfirmationAlert() {
+    final Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+    confirmation.setTitle(DELETE_BOOTSTRAP_TITLE);
+    confirmation.setHeaderText(DELETE_BOOTSTRAP_HEADER_TEXT);
+    confirmation.setContentText(DELETE_BOOTSTRAP_TEXT);
+    confirmation.getButtonTypes().setAll(DELETE_CONFIRM, ButtonType.CANCEL);
+    applyDialogStyle(confirmation);
+    return confirmation;
   }
 
   /**

@@ -59,6 +59,9 @@ public class NodesIdentifierConstants {
   public static final String SETTINGS_BOOTSTRAP_PORT_FIELD = "bootstrap-port-field";
   public static final String SETTINGS_BOOTSTRAP_ID_FIELD = "bootstrap-id-field";
   public static final String SETTINGS_ADD_BOOTSTRAP_BUTTON = "add-bootstrap-button";
+  public static final String SETTINGS_BOOTSTRAP_LIST_CONTAINER = "bootstrap-list-container";
+  public static final String SETTINGS_BOOTSTRAP_COPY_ICON = "bootstrap-copy-icon";
+  public static final String SETTINGS_BOOTSTRAP_DELETE_ICON = "bootstrap-delete-icon";
 
   // classes constants
   public static final String STYLE_CLASS_MENU_OPTION_CONTENT_SELECTED = "menu-option-content-selected";
@@ -77,4 +80,5 @@ public class NodesIdentifierConstants {
 
   // nodes properties
   public static final String PROPERTIES_SEARCH_ID = "searchId";
+  public static final String PROPERTIES_BOOTSTRAP = "bootstrap";
 }

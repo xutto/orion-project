@@ -2,6 +2,7 @@ package com.mac.orion.infrastructure.ui.controller;
 
 import com.mac.orion.application.in.FileSharingConectorUseCase;
 import com.mac.orion.application.out.NodeConfigUseCase;
+import com.mac.orion.infrastructure.ui.creation.BootstrapListCreator;
 import com.mac.orion.infrastructure.ui.demo.Item;
 import com.mac.orion.infrastructure.ui.nodes.ControllerNodes;
 import javafx.fxml.FXML;
@@ -31,6 +32,7 @@ public class SettingsController implements UIController {
   private final ControllerNodes settingsControllerNodes;
   private final FileSharingConectorUseCase fileSharingConectorUseCase;
   private final NodeConfigUseCase nodeConfigUseCase;
+  private final BootstrapListCreator bootstrapListCreator;
 
   @FXML
   private Node settingsCloseIcon;
@@ -162,5 +164,9 @@ public class SettingsController implements UIController {
         .addNode(bootstrapNodesHelpIcon)
         .addNode(limitKHelpIcon)
     ;
+
+    // Render the live bootstrap list from the DB (replaces the static example rows) and wire the
+    // per-row copy/delete commands. Done after node registration so the container is resolvable.
+    bootstrapListCreator.refresh();
   }
 }

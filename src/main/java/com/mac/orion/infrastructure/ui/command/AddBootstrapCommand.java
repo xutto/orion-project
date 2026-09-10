@@ -2,8 +2,11 @@ package com.mac.orion.infrastructure.ui.command;
 
 import com.google.common.net.InetAddresses;
 import com.mac.orion.application.in.UpdateRoutingTableUseCase;
+import com.mac.orion.application.out.BootstrapUseCase;
 import com.mac.orion.domain.model.Address;
 import com.mac.orion.domain.model.Peer;
+import com.mac.orion.domain.model.settings.Bootstrap;
+import com.mac.orion.infrastructure.ui.creation.BootstrapListCreator;
 import com.mac.orion.infrastructure.ui.creation.SettingsAlertsCreator;
 import com.mac.orion.infrastructure.ui.events.EventType;
 import com.mac.orion.infrastructure.ui.nodes.ControllerNodes;
@@ -26,13 +29,16 @@ import static com.mac.orion.domain.share.NodesIdentifierConstants.SETTINGS_BOOTS
 import static com.mac.orion.domain.share.NodesIdentifierConstants.SETTINGS_BOOTSTRAP_PORT_FIELD;
 
 /**
- * Adds a bootstrap contact (ip/port/id) to the in-memory routing table from the Settings panel.
- * Reuses the existing non-persistent {@link UpdateRoutingTableUseCase#addGuestPeerToRoutingTable(Peer)};
- * the peer is then dialed automatically by {@code PeerDiscoveryScheduler} (<= 15 s).
+ * Adds a bootstrap contact (ip/port/id) from the Settings panel and persists it (DECISIÓN-04):
+ * DB first (transactional upsert by {@code PEER_ID}), then the in-memory routing table via
+ * {@link UpdateRoutingTableUseCase#addGuestPeerToRoutingTable(Peer)}, then the live list is
+ * re-rendered. The peer is dialed automatically by {@code PeerDiscoveryScheduler} (<= 15 s);
+ * no forced dial.
  * <p>
  * Validation is strict (DECISIÓN-02, option 2): IPv4 + port 1-65535 + peer ID. The peer ID is checked
  * with the SAME {@code PeerId.fromBase58} the dialer uses at runtime ({@code KadDialerAdapter}), so an
- * id accepted here cannot fail the dial for a malformed format.
+ * id accepted here cannot fail the dial for a malformed format. Validation runs BEFORE {@code save()},
+ * so a malformed id is never persisted.
  */
 @Slf4j
 @RequiredArgsConstructor
@@ -43,6 +49,8 @@ public class AddBootstrapCommand implements Command<Event> {
 
   private final ControllerNodes settingsControllerNodes;
   private final UpdateRoutingTableUseCase updateRoutingTableUseCase;
+  private final BootstrapUseCase bootstrapUseCase;
+  private final BootstrapListCreator bootstrapListCreator;
   private final SettingsAlertsCreator alertsCreator;
 
   @Override
@@ -75,13 +83,17 @@ public class AddBootstrapCommand implements Command<Event> {
         .port(port)
         .ip(ip)
         .build();
+    // Persist FIRST (transactional upsert by PEER_ID) — the DB is the single source of truth.
+    bootstrapUseCase.save(new Bootstrap(ip, rawPort, peerId));
+
     final Peer peer = Peer.builder()
         .id(peerId)
         .address(Set.of(address))
         .build();
-
     updateRoutingTableUseCase.addGuestPeerToRoutingTable(peer);
-    log.info("Bootstrap peer added to the routing table: {}:{} (id={})", ip, port, peerId);
+    log.info("Bootstrap persisted and added to the routing table: {}:{} (id={})", ip, port, peerId);
+
+    bootstrapListCreator.refresh(); // keep the live list in sync with the DB
 
     clearField(SETTINGS_BOOTSTRAP_IP_FIELD);
     clearField(SETTINGS_BOOTSTRAP_PORT_FIELD);

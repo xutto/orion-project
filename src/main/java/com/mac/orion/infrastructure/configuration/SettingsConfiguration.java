@@ -114,7 +114,7 @@ public class SettingsConfiguration {
   private P2P getDefaultP2P() {
 
     final Client client = new Client(String.valueOf(Constants.P2P_PORT_DEFAULT), Constants.LIMIT_K_DEFAULT);
-    final Bootstrap bootstrap = new Bootstrap(bootstrapPort, bootstrapId, bootstrapAddress);
+    final Bootstrap bootstrap = new Bootstrap(bootstrapAddress, bootstrapPort, bootstrapId);
     return new P2P(client, bootstrap);
   }
 
