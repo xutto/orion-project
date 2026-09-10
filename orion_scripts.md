@@ -17,6 +17,8 @@ Fecha: 2025-09-03
 - Java instalado (java disponible en PATH).
 - El JAR de la app compilado en target/orion-application-1.0.0-SNAPSHOT.jar
   - Si no existe, ejecuta: mvn -q -DskipTests package
+- `sqlite3.exe` en la raíz del proyecto (padre de `orion-application/`) o en el PATH.
+  - Lo usa `orion-start-node.ps1` para sembrar la BD del nodo antes de arrancar (ver §3).
 
 
 ## 2) Política de ejecución (si hace falta)
@@ -38,6 +40,7 @@ Parámetros (opcionales):
 - -ORION_BOOTSTRAP_ID <string>   PeerId del bootstrap (por defecto: QmSzM1...FEUd)
 - -SPRING_PROFILE <string>       Perfil Spring (por defecto: pro)
 - -SPRING_DATASOURCE_URL <string> URL JDBC. Si no lo indicas, usa jdbc:sqlite:application{ORION_PORT}.db en el directorio actual.
+- -NoBootstrap (switch) Arranca el nodo con la tabla BOOTSTRAP vacía (no siembra ningún bootstrap) para gestionarlos desde la UI.
 
 Ejemplos:
 ```powershell
@@ -55,12 +58,36 @@ Notas:
 - El script muestra por consola la configuración efectiva antes de lanzar Java.
 - El JAR que se ejecuta es: target/orion-application-1.0.0-SNAPSHOT.jar
 
+### 3.1 Siembra previa de la BD del nodo (Fase 1, 2026-09-09)
+El código actual de Orion lee:
+- el **puerto de escucha** SOLO de la tabla `NODE_CONFIG` (fila `ID=1`) de la BD del nodo, y
+- los **bootstraps** SOLO de la tabla `BOOTSTRAP` de la BD del nodo.
+
+`-Dorion.p2p.port` sigue pasando al JVM pero **ya no se lee** para estos fines
+(se conserva en la línea `java` únicamente porque `orion-stop-pool.ps1` filtra procesos por `-Dorion.p2p.port`).
+Las props `-Dorion.p2p.bootstrap-*` dejaron de existir (refactor 2026-09-10) y **no** se pasan.
+
+Por eso, antes de lanzar `java`, el script escribe en la BD (con `sqlite3.exe`):
+1. `NODE_CONFIG`: crea la tabla si no existe y hace upsert de la fila `ID=1` con `PORT = -ORION_PORT` y `LIMIT_K = 20`.
+2. `BOOTSTRAP`: crea la tabla si no existe, **vacía la tabla** e inserta el triple `-ORION_BOOTSTRAP_IP/-PORT/-ID`.
+   - Semántica: **el script manda en cada arranque** (equivale al comportamiento antiguo de pasar el bootstrap por parámetro).
+   - Si en un futuro quieres que la BD conserve otros bootstraps añadidos desde la UI, hay que retirar el `DELETE FROM BOOTSTRAP`.
+3. Con `-NoBootstrap` (modo para probar la gestión de bootstraps desde la UI): la tabla `BOOTSTRAP` se crea y **queda vacía** (no se inserta nada).
+   El nodo arranca aislado y los bootstraps se añaden desde la app (Settings → Bootstrap nodes).
+   Desde el refactor 2026-09-10 ya no hay props bootstrap en el JVM ni `BootstrapSeeding` en el código.
+
+Requisitos/limitaciones:
+- `sqlite3.exe` debe estar en la raíz del proyecto o en el PATH; si no, el script aborta antes de lanzar Java.
+- No debe haber ninguna instancia Java corriendo sobre esa BD (bloqueo de SQLite en Windows).
+- El `ORION_PORT` debe ser un entero válido (1-65535); si no, el script aborta.
+
 
 ## 4) orion-start-pool.ps1 (múltiples nodos en segundo plano)
 Lanza N instancias del nodo como procesos en segundo plano. Requiere ID de bootstrap y el número de instancias.
 
 Parámetros:
-- -ORION_BOOTSTRAP_ID <string> (alias: -b)  Obligatorio. PeerId del bootstrap.
+- -ORION_BOOTSTRAP_ID <string> (alias: -b)  Obligatorio salvo -NoBootstrap. PeerId del bootstrap.
+- -NoBootstrap (switch)                      Opcional. Arranca los nodos SIN bootstrap en la BD (tabla vacía) para gestionarlos desde la UI.
 - -Instances <int> (alias: -i)              Obligatorio. Número de instancias a lanzar (>=1).
 - -ORION_FILES <string>                     Opcional. Carpeta base para recursos (por defecto: %USERPROFILE%\Downloads\ORION-FILES).
 - -ORION_BOOTSTRAP_IP <string>              Opcional. IP del bootstrap (por defecto: 127.0.0.1).
@@ -75,6 +102,7 @@ Comportamiento:
   - SHARED_FOLDER = {ORION_FILES}\pool\share-{k}
 - Crea automáticamente las carpetas base si no existen: {ORION_FILES}, {ORION_FILES}\datasource, {ORION_FILES}\pool.
 - Lanza cada instancia mediante orion-start-node.ps1 en segundo plano.
+- Antes de arrancar, cada nodo siembra su propia BD con su puerto (`BasePort + k`) y el bootstrap (ver §3.1).
 - Logs por instancia: {ORION_FILES}\logs\node{X}.log (X = 1..Instances)
   - Asegúrate de que exista la carpeta {ORION_FILES}\logs (si no existe, créala antes de lanzar el pool).
 
@@ -88,6 +116,9 @@ Ejemplos:
 
 # Perfil distinto
 .\orion-start-pool.ps1 -b 'Qm...' -i 4 -SPRING_PROFILE local
+
+# Nodos sin bootstrap (para añadirlos como bootstraps desde la UI)
+.\orion-start-pool.ps1 -NoBootstrap -i 2 -BasePort 5050
 ```
 
 Consejos:
@@ -141,4 +172,5 @@ Cómo funciona:
 ## 7) Resumen rápido
 - 1 nodo: `.\orion-start-node.ps1`
 - N nodos en background: `.\orion-start-pool.ps1 -b 'Qm...' -i 3`
+- N nodos sin bootstrap (gestión desde UI): `.\orion-start-pool.ps1 -NoBootstrap -i 2 -BasePort 5050`
 - Pararlos: `.\orion-stop-pool.ps1` o selectivo con `-BasePort` y `-Instances`

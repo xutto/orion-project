@@ -1,7 +1,10 @@
 param(
-    [Parameter(Mandatory = $true, HelpMessage = "Identificador del nodo bootstrap (ORION_BOOTSTRAP_ID)")]
+    [Parameter(Mandatory = $false, HelpMessage = "Identificador del nodo bootstrap (ORION_BOOTSTRAP_ID). Obligatorio salvo -NoBootstrap")]
     [Alias("b")]
-    [string]$ORION_BOOTSTRAP_ID,
+    [string]$ORION_BOOTSTRAP_ID = "",
+
+    [Parameter(Mandatory = $false, HelpMessage = "Arranca los nodos SIN bootstrap en la BD (tabla vacia) para gestionarlos desde la UI")]
+    [switch]$NoBootstrap,
 
     [Parameter(Mandatory = $true)]
     [Alias("i")]
@@ -27,10 +30,20 @@ param(
 )
 
 $ORION_ARTIFACT_VERSION = "1.0.0-SNAPSHOT"
+
+if (-not $NoBootstrap -and ([string]::IsNullOrWhiteSpace($ORION_BOOTSTRAP_ID))) {
+    Write-Error "Indica -ORION_BOOTSTRAP_ID, o usa -NoBootstrap para arrancar sin bootstrap."
+    exit 1
+}
+
 # Mostrar configuración general
 Write-Host "Orion Pool Launcher" -ForegroundColor Cyan
 Write-Host "----------------------------------------"
-Write-Host "Bootstrap ID:`t $ORION_BOOTSTRAP_ID"
+if ($NoBootstrap) {
+    Write-Host "Mode:`t`t SIN BOOTSTRAP (tabla BOOTSTRAP vacia en cada nodo)"
+} else {
+    Write-Host "Bootstrap ID:`t $ORION_BOOTSTRAP_ID"
+}
 Write-Host "Instances (-i):`t $Instances"
 Write-Host "Files base folder:`t $ORION_BASE_FILES"
 Write-Host "Bootstrap IP:`t $ORION_BOOTSTRAP_IP"
@@ -94,24 +107,31 @@ for ($n = 0; $n -lt $Instances; $n++) {
     $logPath_error = "$LOGS_FOLDER\node_error$nodeIndex.log"
 
     $nodeScript = Join-Path -Path (Get-Location) -ChildPath "orion-start-node.ps1"
+    # Nota: en modo -NoBootstrap NO se pasan -ORION_BOOTSTRAP_* vacios:
+    # Start-Process (PS 5.1) rechaza un ArgumentList con cadenas vacias.
+    # El script del nodo los ignora igualmente en ese modo.
     $argList = @(
         "-NoProfile",
         "-ExecutionPolicy", "Bypass",
         "-File", $nodeScript,
         "-ORION_USERPROFILE", $ORION_USERPROFILE,
         "-ORION_PORT", $ORION_PORT.ToString(),
-        "-ORION_BOOTSTRAP_IP", $ORION_BOOTSTRAP_IP,
-        "-ORION_BOOTSTRAP_PORT", $ORION_BOOTSTRAP_PORT,
-        "-ORION_BOOTSTRAP_ID", $ORION_BOOTSTRAP_ID,
         "-SPRING_PROFILE", $SPRING_PROFILE,
         "-SPRING_DATASOURCE_URL", $SPRING_DATASOURCE_URL
     )
+    if ($NoBootstrap) {
+        $argList += "-NoBootstrap"
+    } else {
+        $argList += @("-ORION_BOOTSTRAP_IP", $ORION_BOOTSTRAP_IP,
+                      "-ORION_BOOTSTRAP_PORT", $ORION_BOOTSTRAP_PORT,
+                      "-ORION_BOOTSTRAP_ID", $ORION_BOOTSTRAP_ID)
+    }
 
     $proc = Start-Process -FilePath "powershell.exe" -ArgumentList $argList -WindowStyle Hidden -RedirectStandardOutput $logPath -RedirectStandardError $logPath_error -PassThru
     if ($proc) {
         $proc.Id | Out-File -FilePath "$ORION_BASE_FILES\pids.txt" -Append
+        Write-Host "process pid: $($proc.Id)"
     }
-    Write-Host "process pid: $proc.Id"
 }
 
 Write-Host "\nSe han lanzado $Instances instancia(s) en segundo plano. Revisa los logs nodeX.log en el directorio del proyecto." -ForegroundColor Cyan
@@ -120,3 +140,4 @@ Write-Host "\nSe han lanzado $Instances instancia(s) en segundo plano. Revisa lo
 Write-Host "\nEjemplos de uso:" -ForegroundColor Yellow
 Write-Host "  .\\orion-start-pool.ps1 -ORION_BOOTSTRAP_ID 'Qm...' -i 3"
 Write-Host "  .\\orion-start-pool.ps1 -ORION_BOOTSTRAP_ID 'Qm...' -i 2 -ORION_BASE_FILES 'C:\\DATA\\ORION-FILES' -BasePort 5050 -SPRING_PROFILE pro"
+Write-Host "  .\\orion-start-pool.ps1 -NoBootstrap -i 2 -BasePort 5050   # nodos sin bootstrap (gestionarlos desde la UI)"

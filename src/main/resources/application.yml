@@ -29,8 +29,3 @@ logging:
       libp2p:
         protocol:
           Identify: debug
-orion:
-  p2p:
-    bootstrap-ip: "" #172.20.0.3
-    bootstrap-port: 8000 #172.20.0.3
-    bootstrap-id: "" #172.20.0.3

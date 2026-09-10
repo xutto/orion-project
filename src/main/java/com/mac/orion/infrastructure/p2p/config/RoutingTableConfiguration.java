@@ -21,8 +21,8 @@ import static com.mac.orion.domain.dht.OperationsType.SAVE;
 
 /**
  * Seeds the routing table at startup from the BOOTSTRAP table (database, single source of truth).
- * The legacy yml bootstrap is migrated into the DB first (one-shot, idempotent) by
- * {@link BootstrapSeeding}. Ephemeral peers (discovered by KAD) are NOT involved: they live only in
+ * The table is populated either by the start script (SQL) or interactively from the UI.
+ * Ephemeral peers (discovered by KAD) are NOT involved: they live only in
  * memory and are never read or written here.
  */
 @Configuration
@@ -33,8 +33,7 @@ public class RoutingTableConfiguration {
   private static final String TRANSMISSION_TCP = "tcp";
 
   @Bean
-  public RoutingTable routingTable(Host hostNode, BootstrapUseCase bootstrapUseCase,
-      BootstrapSeeding bootstrapSeeding) {
+  public RoutingTable routingTable(Host hostNode, BootstrapUseCase bootstrapUseCase) {
 
     // initializing hostNodeData without Addresses because not know now.
     final HostNode ownHostNodeData = HostNode.builder()
@@ -47,8 +46,7 @@ public class RoutingTableConfiguration {
     final RoutingDataHashTable routingDataHashTable = RoutingDataHashTable.create(ownHostNodeData,
         operations);
 
-    // One-shot migration of the legacy yml bootstrap into the DB, then seed the table from the DB.
-    bootstrapSeeding.seedFromYmlIfEmpty();
+    // Seed the routing table from the BOOTSTRAP table in the DB.
     final Set<Bootstrap> bootstraps = new HashSet<>(bootstrapUseCase.findAll());
     for (final Bootstrap bootstrap : bootstraps) {
       final Integer port = parsePort(bootstrap.port());

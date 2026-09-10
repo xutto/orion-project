@@ -15,12 +15,9 @@ services:
     environment:
       ORION_PORT: "${NODE_PORT}"
       ORION_FILES: "${ORION_FILES}"
-      ORION_BOOTSTRAP_IP: "${ORION_BOOTSTRAP_IP}"
-      ORION_BOOTSTRAP_PORT: "${ORION_BOOTSTRAP_PORT}"
-      ORION_BOOTSTRAP_ID: "${ORION_BOOTSTRAP_ID}"
       SUBNET_IP: "${SUBNET_IP}"
     command: >
-      java -Dorion.files.scan.folder=$${ORION_FILES} -Dspring.profiles.active=pro -Dprism.order=sw -Djavafx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dorion.p2p.limitK=20 -Dorion.p2p.port=$${ORION_PORT} -Dorion.p2p.bootstrap-ip=$${ORION_BOOTSTRAP_IP} -Dorion.p2p.bootstrap-port=$${ORION_BOOTSTRAP_PORT} -Dorion.p2p.bootstrap-id=$${ORION_BOOTSTRAP_ID} -jar /app/orion-application.jar --enabled-ui="false"
+      java -Dorion.files.scan.folder=$${ORION_FILES} -Dspring.profiles.active=pro -Dprism.order=sw -Djavafx.headless=true -Dglass.platform=Monocle -Dmonocle.platform=Headless -Dorion.p2p.limitK=20 -Dorion.p2p.port=$${ORION_PORT} -jar /app/orion-application.jar --enabled-ui="false"
 
 networks:
   public_network:

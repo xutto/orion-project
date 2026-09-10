@@ -90,7 +90,7 @@ public class SettingsAlertsCreator implements Creator {
   public Alert createDeleteBootstrapConfirmationAlert() {
     final Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
     confirmation.setTitle(DELETE_BOOTSTRAP_TITLE);
-    confirmation.setHeaderText(DELETE_BOOTSTRAP_HEADER_TEXT);
+    confirmation.setHeaderText(null);
     confirmation.setContentText(DELETE_BOOTSTRAP_TEXT);
     confirmation.getButtonTypes().setAll(DELETE_CONFIRM, ButtonType.CANCEL);
     applyDialogStyle(confirmation);
@@ -126,7 +126,7 @@ public class SettingsAlertsCreator implements Creator {
   public Alert createPortChangeConfirmationAlert() {
     final Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
     confirmation.setTitle(CHANGE_PORT_TITLE);
-    confirmation.setHeaderText(PORT_CHANGE_CONFIRMATION_HEADER_TEXT);
+    confirmation.setHeaderText(null);
     confirmation.setContentText(PORT_CHANGE_CONFIRMATION_TEXT);
     confirmation.getButtonTypes().setAll(PORT_RESTART, ButtonType.CANCEL);
     applyDialogStyle(confirmation);

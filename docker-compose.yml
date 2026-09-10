@@ -15,9 +15,6 @@ services:
     environment:
       ORION_PORT: 4002
       ORION_FILES: "${ORION_FILES}"
-      ORION_BOOTSTRAP_IP: "${ORION_BOOTSTRAP_IP}"
-      ORION_BOOTSTRAP_PORT: "${ORION_BOOTSTRAP_PORT}"
-      ORION_BOOTSTRAP_ID: "${ORION_BOOTSTRAP_ID}"
     command: >
       java
       -Dorion.files.scan.folder=$${ORION_FILES}
@@ -28,9 +25,6 @@ services:
       -Dmonocle.platform=Headless
       -Dorion.p2p.limitK=20
       -Dorion.p2p.port=$${ORION_PORT}
-      -Dorion.p2p.bootstrap-ip=$${ORION_BOOTSTRAP_IP}
-      -Dorion.p2p.bootstrap-port=$${ORION_BOOTSTRAP_PORT}
-      -Dorion.p2p.bootstrap-id=$${ORION_BOOTSTRAP_ID}
       -jar /app/orion-application.jar
       --enabled-ui="false"
 
@@ -48,9 +42,6 @@ services:
     environment:
       ORION_PORT: 4003
       ORION_FILES: "${ORION_FILES}"
-      ORION_BOOTSTRAP_IP: "${ORION_BOOTSTRAP_IP}"
-      ORION_BOOTSTRAP_PORT: "${ORION_BOOTSTRAP_PORT}"
-      ORION_BOOTSTRAP_ID: "${ORION_BOOTSTRAP_ID}"
     command: >
       java
       -Dorion.files.scan.folder=$${ORION_FILES}
@@ -60,9 +51,6 @@ services:
       -Dmonocle.platform=Headless
       -Dorion.p2p.limitK=20
       -Dorion.p2p.port=$${ORION_PORT}
-      -Dorion.p2p.bootstrap-ip=$${ORION_BOOTSTRAP_IP}
-      -Dorion.p2p.bootstrap-port=$${ORION_BOOTSTRAP_PORT}
-      -Dorion.p2p.bootstrap-id=$${ORION_BOOTSTRAP_ID}
       -jar /app/orion-application.jar
       --enabled-ui="false"
 
@@ -80,9 +68,6 @@ services:
     environment:
       ORION_PORT: 4004
       ORION_FILES: "${ORION_FILES}"
-      ORION_BOOTSTRAP_IP: "${ORION_BOOTSTRAP_IP}"
-      ORION_BOOTSTRAP_PORT: "${ORION_BOOTSTRAP_PORT}"
-      ORION_BOOTSTRAP_ID: "${ORION_BOOTSTRAP_ID}"
     command: >
       java
       -Dorion.files.scan.folder=$${ORION_FILES}
@@ -92,9 +77,6 @@ services:
       -Dmonocle.platform=Headless
       -Dorion.p2p.limitK=20
       -Dorion.p2p.port=$${ORION_PORT}
-      -Dorion.p2p.bootstrap-ip=$${ORION_BOOTSTRAP_IP}
-      -Dorion.p2p.bootstrap-port=$${ORION_BOOTSTRAP_PORT}
-      -Dorion.p2p.bootstrap-id=$${ORION_BOOTSTRAP_ID}
       -jar /app/orion-application.jar
       --enabled-ui="false"
 

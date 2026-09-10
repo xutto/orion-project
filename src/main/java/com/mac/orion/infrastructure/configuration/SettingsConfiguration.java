@@ -30,12 +30,6 @@ public class SettingsConfiguration {
 
   //  private static final Path base = Paths.get(System.getenv("USERPROFILE"), ".Orion");
 
-  @Value("${orion.p2p.bootstrap-ip}")
-  private String bootstrapAddress;
-  @Value("${orion.p2p.bootstrap-port}")
-  private String bootstrapPort;
-  @Value("${orion.p2p.bootstrap-id}")
-  private String bootstrapId;
   @Value("${orion.user-profile:${USERPROFILE}}")
   private String userProfile;
 
@@ -114,7 +108,9 @@ public class SettingsConfiguration {
   private P2P getDefaultP2P() {
 
     final Client client = new Client(String.valueOf(Constants.P2P_PORT_DEFAULT), Constants.LIMIT_K_DEFAULT);
-    final Bootstrap bootstrap = new Bootstrap(bootstrapAddress, bootstrapPort, bootstrapId);
+    // El bootstrap ya no se configura desde yml: la tabla BOOTSTRAP de la BD es la unica fuente
+    // (se siembra con el script de arranque o se gestiona desde la UI).
+    final Bootstrap bootstrap = new Bootstrap("", "", "");
     return new P2P(client, bootstrap);
   }
 
